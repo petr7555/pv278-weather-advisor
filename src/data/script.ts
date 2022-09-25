@@ -1,7 +1,6 @@
 import got from 'got';
 import pkg from 'node-gzip';
-import weatherStationsData from './weatherStations.json' assert { type: 'json' };
-
+import weatherStationsData from './weatherStations.json' assert { type: "json" };
 const { ungzip } = pkg;
 
 type WeatherStation = {
@@ -32,4 +31,5 @@ const downloadStationData = async (id: string) => {
 };
 
 const id = czechStationsIds[0];
-downloadStationData(id).then(() => console.log('done'));
+await downloadStationData(id);
+console.log('done');
