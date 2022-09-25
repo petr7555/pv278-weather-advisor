@@ -7,8 +7,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "downloadCzechStationsData": "ts-node ./src/data/downloadCzechStationsData.ts"
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -37,12 +36,8 @@
     "workbox-streams": "^6.5.4"
   },
   "devDependencies": {
-    "@types/node-gzip": "^1.1.0",
     "autoprefixer": "^10.4.12",
-    "csv-parse": "^5.3.0",
     "daisyui": "^2.31.0",
-    "got": "^12.5.0",
-    "node-gzip": "^1.1.2",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8",
     "ts-node": "^10.9.1"
