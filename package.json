@@ -6,6 +6,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint": "eslint src --ext .ts,.tsx --fix",
+    "lint:fix": "npm run lint --fix",
     "eject": "react-scripts eject"
   },
   "dependencies": {
@@ -40,14 +42,9 @@
   "devDependencies": {
     "autoprefixer": "^10.4.12",
     "daisyui": "^2.31.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [

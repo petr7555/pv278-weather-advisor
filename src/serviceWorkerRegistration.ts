@@ -1,3 +1,5 @@
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
+
 // This optional code is used to register a service worker.
 // register() is not called by default.
 

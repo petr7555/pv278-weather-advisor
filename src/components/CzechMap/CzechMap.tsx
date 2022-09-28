@@ -21,37 +21,37 @@ interface IBubbleMapPoint {
 }
 
 const points: IBubbleMapPoint[] = [{
-    latitude: 49.1951,
-    longitude: 16.6068,
-    value: 10,
+  latitude: 49.1951,
+  longitude: 16.6068,
+  value: 10,
 }];
 
 const data = {
-    labels: ['Brno'],
-    datasets: [{
-        outline: cze.features,
-        showOutline: true,
-        backgroundColor: 'steelblue',
-        data: points,
-    }]
+  labels: ['Brno'],
+  datasets: [{
+    outline: cze.features,
+    showOutline: true,
+    backgroundColor: 'steelblue',
+    data: points,
+  }]
 };
 
 const options: any = {
-    plugins: {
-        legend: {
-            display: false
-        },
+  plugins: {
+    legend: {
+      display: false
     },
-    scales: {
-        xy: {
-            projection: 'mercator',
-        },
-    }
+  },
+  scales: {
+    xy: {
+      projection: 'mercator',
+    },
+  }
 };
 
 
 const CzechMap = () => {
-    return <Chart type={'bubbleMap'} data={data} options={options}/>;
+  return <Chart type={'bubbleMap'} data={data} options={options}/>;
 };
 
 export default CzechMap;
