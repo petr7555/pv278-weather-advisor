@@ -1,6 +1,7 @@
 {
     "name": "Weather Advisor",
     "short_name": "Weather Advisor",
+    "description": "Plan your best vacation ever!",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
