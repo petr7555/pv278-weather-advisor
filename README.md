@@ -10,3 +10,4 @@ The application is a PWA, so you can install it on your phone.
 Icons have been generated using [this amazing favicon generator](https://realfavicongenerator.net/).
 Meta tags have been verified using [this great online tool](https://metatags.io/).
 To preview PWA in development, run `npm run preview-deploy-local`.
+trigger
