@@ -30,10 +30,11 @@ jobs:
         run: npm run build
       
       - name: Deploy
-        uses: petr7555/surge-preview@v1
+        uses: petr7555/surge-preview@v2
         id: preview_step
         with:
           surge_token: ${{ secrets.SURGE_TOKEN }}
+          surge_domain: pv278-weather-advisor
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dist: build
             
