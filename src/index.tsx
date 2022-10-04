@@ -5,18 +5,19 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from '@auth0/auth0-react';
+import authConfig from './auth_config.json';
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
     <Auth0Provider
-      domain="dev-l1ln-1qc.eu.auth0.com"
-      clientId="0acNygAV5bRvY5nVv9P55KM8kEVA2XNV"
+      domain={authConfig.domain}
+      clientId={authConfig.clientId}
       redirectUri={window.location.origin}
     >
-      <App />
+      <App/>
     </Auth0Provider>,
   </React.StrictMode>
 );
