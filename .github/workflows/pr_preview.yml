@@ -30,7 +30,7 @@ jobs:
         run: npm run build
       
       - name: Deploy
-        uses: petr7555/surge-preview@v2
+        uses: petr7555/surge-preview@v3
         id: preview_step
         with:
           surge_token: ${{ secrets.SURGE_TOKEN }}
