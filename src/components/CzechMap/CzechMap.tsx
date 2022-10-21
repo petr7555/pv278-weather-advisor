@@ -32,7 +32,7 @@ const data = {
     {
       label: 'Czech Republic',
       outline: cze.features,
-      backgroundColor: 'steelblue',
+      backgroundColor: '#ffe963',
       data: points,
       outlineBorderWidth: 2,
       outlineBorderColor: 'red',
@@ -52,8 +52,12 @@ const options: any = {
   showGraticule: false,
   plugins: {
     legend: {
-      display: true
+      display: false
     },
+    tooltip: {
+      displayColors: false,
+      backgroundColor: 'black'
+    }
   },
   scales: {
     xy: {

@@ -20,3 +20,10 @@ To preview PWA in development, run `npm run preview-deploy-local`.
   been [cloned](https://github.com/petr7555/surge-preview) and source code modified.
   Having the preview deployment on a subdomain is needed so that Auth0 allowed URLs can be configured.
   The downside is that without `https`, the PWA does not work. Which is fine for PR preview.
+
+## Data
+- source: https://www.chmi.cz/historicka-data/pocasi/mesicni-data/mesicni-data-dle-z.-123-1998-Sb
+
+## Color palettes
+- https://cz.pinterest.com/pin/314900198926790245/
+- https://www.color-hex.com/color-palette/54458
