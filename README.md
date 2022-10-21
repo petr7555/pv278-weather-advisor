@@ -8,9 +8,9 @@ The application is a PWA, so you can install it on your phone.
 
 ## Development
 
-Icons have been generated using [this amazing favicon generator](https://realfavicongenerator.net/).
-Meta tags have been verified using [this great online tool](https://metatags.io/).
-To preview PWA in development, run `npm run preview-deploy-local`.
+- Icons have been generated using [this amazing favicon generator](https://realfavicongenerator.net/).
+- Meta tags have been verified using [this great online tool](https://metatags.io/).
+- To preview PWA in development, run `npm run preview-deploy-local`.
 
 ## Deployment
 
@@ -19,7 +19,8 @@ To preview PWA in development, run `npm run preview-deploy-local`.
   To achieve this, [surge-preview](https://github.com/afc163/surge-preview) action has
   been [cloned](https://github.com/petr7555/surge-preview) and source code modified.
   Having the preview deployment on a subdomain is needed so that Auth0 allowed URLs can be configured.
-  The downside is that without `https`, the PWA does not work. Which is fine for PR preview.
+  The downside is that Surge does not provide SSL certificate for subdomains and without `https`,
+  the PWA does not work. But this is acceptable for PR preview.
 
 ## Data
 - source: https://www.chmi.cz/historicka-data/pocasi/mesicni-data/mesicni-data-dle-z.-123-1998-Sb
