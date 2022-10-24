@@ -1,17 +1,23 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
-const Select: FC = () => {
+type Props = {
+    initialOption: string;
+    options: string[];
+}
+
+const Select: FC<Props> = ({ initialOption, options }) => {
+  const [value, setValue] = useState(initialOption);
+
+  const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setValue(event.target.value);
+  };
+
   return (
-    <select className="select w-full max-w-xs bg-[#ffe963] ml-10 mt-10">
-      <option disabled selected>What would you like to do?</option>
-      <option>Cycling</option>
-      <option>Running</option>
-      <option>Hiking</option>
-      <option>Snorkeling</option>
-      <option>Kayaking</option>
-      <option>Skiing</option>
-      <option>Cross-country skiing</option>
-      <option>Honeymoon</option>
+    <select value={value} onChange={onChange} className="select w-full max-w-xs bg-[#ffe963] ml-10 mt-10">
+      <option disabled>{initialOption}</option>
+      {options.map((option) => (
+        <option key={option}>{option}</option>
+      ))}
     </select>
   );
 };

@@ -28,3 +28,6 @@ The application is a PWA, so you can install it on your phone.
 ## Color palettes
 - https://cz.pinterest.com/pin/314900198926790245/
 - https://www.color-hex.com/color-palette/54458
+
+## Credits
+- Landing page photo by [@jakubkriz](https://unsplash.com/@jakubkriz) on [Unsplash](https://unsplash.com/photos/06lv_LBX3pk);
