@@ -1,12 +1,14 @@
 import React, { FC, useState } from 'react';
+import clsx from 'clsx';
 
 type Props = {
     min: number;
     max: number;
     initialValue: number;
     step?: number;
+    className?: string;
 }
-const Range: FC<Props> = ({ min, max, initialValue, step = 1 }) => {
+const Range: FC<Props> = ({ min, max, initialValue, step = 1, className }) => {
   const [value, setValue] = useState(initialValue);
 
   const onChange = (event: any) => {
@@ -14,7 +16,7 @@ const Range: FC<Props> = ({ min, max, initialValue, step = 1 }) => {
   };
 
   return (
-    <div className="max-w-xs ml-10 mt-10">
+    <div className={clsx("max-w-xs", className)}>
       <input type="range" className="range range-sm range-primary" step={step} min={min} max={max} value={value}
         onChange={onChange}/>
       <div className="w-max-xs flex justify-between text-xs px-1 ">

@@ -13,7 +13,7 @@ const Select: FC<Props> = ({ initialOption, options }) => {
   };
 
   return (
-    <select value={value} onChange={onChange} className="select w-full max-w-xs bg-[#ffe963] ml-10 mt-10">
+    <select value={value} onChange={onChange} className="select w-full max-w-xs bg-secondary">
       <option disabled>{initialOption}</option>
       {options.map((option) => (
         <option key={option}>{option}</option>
