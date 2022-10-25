@@ -2,12 +2,10 @@ import React from 'react';
 import CzechMap from './CzechMap/CzechMap';
 import Select from './Select';
 import Range from './Range';
-import Header from './Header';
 
 const Dashboard = () => {
   return (
     <div>
-      <Header/>
       <CzechMap/>
       <Select initialOption={"What would you like to do?"} options={[
         "Cycling",
