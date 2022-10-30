@@ -9,7 +9,7 @@ FOLDER = "/Users/petr.janik/Downloads"
 STATS = [
     ("Průměrná teplota vzduchu", "AVG"),
     ("Úhrn srážek", "SUM"),
-    ("Celková výška sněhové pokrývky", "SUM"),
+    ("Celková výška sněhové pokrývky", "MAX"),
     ("Doba trvání slunečního svitu", "SUM")
 ]
 

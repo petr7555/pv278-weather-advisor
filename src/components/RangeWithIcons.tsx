@@ -4,16 +4,18 @@ import Range from './Range';
 type Props = {
     min: number;
     max: number;
-    initialValue: number;
-    step?: number;
-    className?: string;
+    step: number;
+    value: number;
+    onChange: (value: number) => void;
     leftIcon: FunctionComponent<SVGProps<SVGSVGElement> & { title?: string | undefined; }>;
     rightIcon: FunctionComponent<SVGProps<SVGSVGElement> & { title?: string | undefined; }>;
+    className?: string;
 }
 const RangeWithIcons: FC<Props> = ({
   min, max,
-  initialValue, step = 1,
-  leftIcon: LeftIcon, rightIcon: RightIcon
+  value, step,
+  leftIcon: LeftIcon, rightIcon: RightIcon,
+  onChange
 }) => {
 
   const iconSize = 10;
@@ -21,7 +23,7 @@ const RangeWithIcons: FC<Props> = ({
   return (
     <div className={'flex'}>
       <LeftIcon className={`w-${iconSize} h-${iconSize}`}/>
-      <Range className="flex-1 mt-2 mx-2" min={min} max={max} initialValue={initialValue} step={step}/>
+      <Range className="flex-1 mt-2 mx-2" min={min} max={max} step={step} value={value} onChange={onChange}/>
       <RightIcon className={`w-${iconSize} h-${iconSize}`}/>
     </div>
   );

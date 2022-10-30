@@ -2,7 +2,7 @@ import React from 'react';
 import Profile from './Profile';
 import Location from './Location';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import Dashboard from './Dashboard';
+import Dashboard from './Dashboard/Dashboard';
 
 const RoutesSwitch = () => {
   return (
