@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useContext } from 'react';
+import React, { FC, useContext } from 'react';
 import { BubbleMapController, GeoFeature, ProjectionScale, SizeScale } from 'chartjs-chart-geo';
 import { CategoryScale, Chart as ChartJS, Legend, PointElement, RadialLinearScale, Tooltip } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
