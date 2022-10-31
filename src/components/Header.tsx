@@ -13,6 +13,7 @@ const Header = () => {
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-secondary btn-circle avatar w-16 h-16 bg-transparent border-0">
             <div className="w-14 rounded-full">
+              {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
               <img src={user?.picture} alt="profile picture of logged in user" 
                 referrerPolicy="no-referrer"/>
             </div>
