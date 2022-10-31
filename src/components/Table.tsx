@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FC } from 'react';
+import { FC, FunctionComponent, SVGProps } from 'react';
 import { DataGrid, GridColDef, GridColumnHeaderParams } from '@mui/x-data-grid';
 import { ReactComponent as Calendar } from '../icons/calendar.svg';
 import { ReactComponent as Hot } from '../icons/hot.svg';
@@ -7,8 +7,8 @@ import { ReactComponent as Sunny } from '../icons/sunny.svg';
 import { ReactComponent as Showers } from '../icons/showers.svg';
 import { ReactComponent as Snow } from '../icons/snow.svg';
 
-const icon = (Icon: FC<any>) => {
-  return <Icon style={{ width: '25px', marginRight: "3px" }}/>;
+const icon = (Icon: FunctionComponent<SVGProps<SVGSVGElement> & { title?: string | undefined; }>) => {
+  return <Icon style={{ width: '25px', marginRight: '3px' }}/>;
 };
 
 
@@ -50,7 +50,7 @@ const columns: GridColDef[] = [
     )
   },
   {
-    field: 'snow', headerName: "Height of snow cover", type: 'number', flex: 2,
+    field: 'snow', headerName: 'Height of snow cover', type: 'number', flex: 2,
     renderHeader: (params: GridColumnHeaderParams) => (
       <>
         {icon(Snow)}
@@ -60,34 +60,29 @@ const columns: GridColDef[] = [
   },
 ];
 
-const rows = [
-  { month: 1, temperature: 5, sunshine: 10, precipitation: 10, snow: 35 },
-  { month: 2, temperature: 4, sunshine: 15, precipitation: 0, snow: 0, },
-  { month: 3, temperature: 20, sunshine: 7, precipitation: 100, snow: 15 },
-  { month: 4, temperature: 8, sunshine: 0, precipitation: 20, snow: 70 },
-  { month: 5, temperature: -10, sunshine: 10, precipitation: 10, snow: 35 },
-  { month: 6, temperature: 5, sunshine: 10, precipitation: 10, snow: 35 },
-  { month: 7, temperature: 5, sunshine: 10, precipitation: 10, snow: 35 },
-  { month: 8, temperature: 5, sunshine: 10, precipitation: 10, snow: 35 },
-  { month: 9, temperature: 5, sunshine: 10, precipitation: 10, snow: 35 },
-  { month: 10, temperature: 5, sunshine: 10, precipitation: 10, snow: 35 },
-  { month: 11, temperature: 5, sunshine: 10, precipitation: 10, snow: 35 },
-  { month: 12, temperature: 5, sunshine: 10, precipitation: 10, snow: 35 },
-];
+type Row = {
+    month: number;
+    temperature: number;
+    sunshine: number;
+    precipitation: number;
+    snow: number;
+}
 
-const Table = () => {
+type Props = {
+    rows: Row[];
+}
+
+const Table: FC<Props> = ({ rows }) => {
   return (
-    <div style={{height: "100%", width: '80%', margin: "100px" }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        disableColumnMenu
-        hideFooter={true}
-        autoHeight={true}
-        getRowId={(row) => row.month}
-        rowHeight={40}
-      />
-    </div>
+    <DataGrid
+      rows={rows}
+      columns={columns}
+      disableColumnMenu
+      hideFooter={true}
+      autoHeight={true}
+      getRowId={(row) => row.month}
+      rowHeight={40}
+    />
   );
 };
 

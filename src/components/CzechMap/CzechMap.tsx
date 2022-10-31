@@ -1,22 +1,27 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback, useContext } from 'react';
 import { BubbleMapController, GeoFeature, ProjectionScale, SizeScale } from 'chartjs-chart-geo';
 import { CategoryScale, Chart as ChartJS, Legend, PointElement, RadialLinearScale, Tooltip } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 import cze from './czeFeatures.json';
 import { Rating } from '../Dashboard/getRatings';
+import { useNavigate } from 'react-router-dom';
+import StateContext from '../../stateContext';
 
 ChartJS.register(CategoryScale, PointElement, RadialLinearScale, Tooltip, Legend);
 ChartJS.register(BubbleMapController, GeoFeature, ProjectionScale, SizeScale);
 
 type Props = {
-  ratings: Rating[]
+    ratings: Rating[]
 }
 
 const CzechMap: FC<Props> = ({
   ratings
 }) => {
+  const { setRatingValue } = useContext(StateContext);
+  const navigate = useNavigate();
+
   const labels = ratings.map(rating => rating.name);
-  
+
   const data = {
     labels,
     datasets: [
@@ -59,7 +64,9 @@ const CzechMap: FC<Props> = ({
     onClick: (event: any, elems: any[]) => {
       if (elems.length > 0) {
         const idx = elems[0].element.$context.dataIndex;
-        console.log('clicked on', labels[idx]);
+        const location = ratings[idx];
+        setRatingValue(location.value);
+        navigate(`/location/${location.name}`);
       }
     },
     onHover: (event: any, elems: any[]) => {

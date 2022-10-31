@@ -18,13 +18,19 @@ const RangeWithIcons: FC<Props> = ({
   onChange
 }) => {
 
-  const iconSize = 10;
-  
+  const iconSize = '2.5rem';
+
   return (
     <div className={'flex'}>
-      <LeftIcon className={`w-${iconSize} h-${iconSize}`}/>
+      <LeftIcon style={{
+        width: iconSize,
+        height: iconSize
+      }}/>
       <Range className="flex-1 mt-2 mx-2" min={min} max={max} step={step} value={value} onChange={onChange}/>
-      <RightIcon className={`w-${iconSize} h-${iconSize}`}/>
+      <RightIcon style={{
+        width: iconSize,
+        height: iconSize
+      }}/>
     </div>
   );
 };

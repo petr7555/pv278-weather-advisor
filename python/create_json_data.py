@@ -25,6 +25,7 @@ def create_json_data():
             df = pd.read_csv(monthly_data_file, sep=";", decimal=",")
             df = df[df["Statistika"] == stat_code]
             df = df[cols]
+            # mean over all years
             df = df.mean()
             average_per_months = df.to_list()
 
