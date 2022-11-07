@@ -7,12 +7,12 @@ type Props = {
 
 const Layout: FC<Props> = ({ children }) => {
   return (
-    <>
+    <div className={"h-screen"}>
       <Header />
-      <div className={"container mx-auto"}>
+      <div className={"container mx-auto pt-20 h-full"}>
         {children}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -7,7 +7,7 @@ const Header = () => {
   const { user } = useAuth0();
   
   return (
-    <div className="navbar bg-primary">
+    <div className="navbar bg-primary fixed">
       <div className="flex-1"></div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">

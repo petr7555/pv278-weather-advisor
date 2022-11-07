@@ -21,7 +21,7 @@ const RangeWithIcons: FC<Props> = ({
   const iconSize = '2.5rem';
 
   return (
-    <div className={'flex'}>
+    <div className={'flex flex-1 justify-center min-w-[340px] md:min-w-[500px]'}>
       <LeftIcon style={{
         width: iconSize,
         height: iconSize

@@ -11,7 +11,7 @@ const getRatings = (monthIdx: number, idealTemperature: number, idealSunshine: n
     name: 'Brno',
     latitude: 49.1951,
     longitude: 16.6068,
-    value: 1.4,
+    value: 8.3,
   },
   {
     name: 'Praha',

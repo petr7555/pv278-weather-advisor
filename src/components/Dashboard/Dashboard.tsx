@@ -49,31 +49,36 @@ const Dashboard = () => {
   };
 
   return (
-    <div className={'flex'}>
-      <div className={'flex-1'}>
+    <div className={'flex flex-col lg:flex-row justify-items-center items-center h-full'}>
+      <div className={'my-10 w-full max-h-4/5'}>
         <CzechMap ratings={ratings}/>
       </div>
-      <div className={'flex-1'}>
-        <Select initialOption={'What would you like to do?'} options={activities.map(activity => activity.name)}
-          value={activity || 'What would you like to do?'} onChange={onActivityChange}/>
-        <Select initialOption={'When would you like to go?'} options={months}
-          value={monthIdx ? months[monthIdx] : 'When would you like to go?'} onChange={onMonthChange}/>
-        {/* TODO find edge values */}
-        {/* TODO explain what values mean */}
-        {/* TODO In °C */}
-        <RangeWithIcons min={-10} max={30} step={5} value={idealTemperature} leftIcon={Cold} rightIcon={Hot}
-          onChange={setIdealTemperature}/>
-        {/* TODO In hours per month -> change to hours per day */}
-        <RangeWithIcons min={0} max={24} value={idealSunshine} step={2} leftIcon={MostlyCloudy}
-          rightIcon={Sunny}
-          onChange={setIdealSunshine}/>
-        {/* TODO Daily precipitation in mm averaged over month */}
-        <RangeWithIcons min={0} max={100} value={idealPrecipitation} step={10} leftIcon={Cloudy}
-          rightIcon={Showers}
-          onChange={setIdealPrecipitation}/>
-        {/* TODO In cm */}
-        <RangeWithIcons min={0} max={100} value={idealSnow} step={10} leftIcon={SnowFlurries} rightIcon={Snow}
-          onChange={setIdealSnow}/>
+      <div className={'flex flex-col'}>
+        <div className={'flex-1 w-full items-center flex flex-col'}>
+          <Select initialOption={'What would you like to do?'} options={activities.map(activity => activity.name)}
+            value={activity || 'What would you like to do?'} onChange={onActivityChange}/>
+          <Select initialOption={'When would you like to go?'} options={months}
+            value={monthIdx ? months[monthIdx] : 'When would you like to go?'} onChange={onMonthChange}
+            className={"mt-4 mb-4"}/>
+        </div>
+        <div className={"flex-1 w-full items-center flex flex-col gap-3"}>
+          {/* TODO find edge values */}
+          {/* TODO explain what values mean */}
+          {/* TODO In °C */}
+          <RangeWithIcons min={-10} max={30} step={5} value={idealTemperature} leftIcon={Cold} rightIcon={Hot}
+            onChange={setIdealTemperature}/>
+          {/* TODO In hours per month -> change to hours per day */}
+          <RangeWithIcons min={0} max={24} value={idealSunshine} step={2} leftIcon={MostlyCloudy}
+            rightIcon={Sunny}
+            onChange={setIdealSunshine}/>
+          {/* TODO Daily precipitation in mm averaged over month */}
+          <RangeWithIcons min={0} max={100} value={idealPrecipitation} step={10} leftIcon={Cloudy}
+            rightIcon={Showers}
+            onChange={setIdealPrecipitation}/>
+          {/* TODO In cm */}
+          <RangeWithIcons min={0} max={100} value={idealSnow} step={10} leftIcon={SnowFlurries} rightIcon={Snow}
+            onChange={setIdealSnow}/>
+        </div>
       </div>
     </div>
   );
