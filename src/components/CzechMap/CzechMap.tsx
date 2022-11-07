@@ -60,6 +60,10 @@ const CzechMap: FC<Props> = ({
         projection: 'mercator',
         padding: 0,
       },
+      r: {
+        min: 0,
+        max: 10,
+      },
     },
     onClick: (event: any, elems: any[]) => {
       if (elems.length > 0) {
