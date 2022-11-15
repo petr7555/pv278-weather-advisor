@@ -1,3 +1,5 @@
+import locations from '../../data/locations.json';
+
 export type Rating = {
     name: string;
     latitude: number;
@@ -7,18 +9,12 @@ export type Rating = {
 
 // TODO implement
 const getRatings = (monthIdx: number, idealTemperature: number, idealSunshine: number, idealPrecipitation: number, idealSnow: number) : Rating[] => {
-  return [{
-    name: 'Brno',
-    latitude: 49.1951,
-    longitude: 16.6068,
-    value: 8.3,
-  },
-  {
-    name: 'Praha',
-    latitude: 50.0755,
-    longitude: 14.4378,
-    value: 9.8,
-  }];
+  return Object.values(locations).map(location => ({
+    name: location.name,
+    latitude: location.latitude,
+    longitude: location.longitude,
+    value: 5,
+  }));
 };
 
 export default getRatings;
