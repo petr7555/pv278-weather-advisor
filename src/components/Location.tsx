@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import Table from './Table';
 import { useParams } from 'react-router-dom';
-import Stars from './Stars';
 import BackButton from './BackButton';
 import locations from '../data/locations.json';
 import StateContext from '../stateContext';
@@ -35,7 +34,7 @@ const Location = () => {
       <BackButton/>
       <div className={'prose prose-xl text-center max-w-none'}>
         <h1 className={'mb-2'}>{location.name}</h1>
-        <Stars value={Math.round(ratingValue / 2)}/>
+        <p className={"text-2xl"}>{ratingValue} / 10</p>
         <div className={'mx-4 lg:mx-16 mt-8'}>
           <Table rows={rows}/>
         </div>

@@ -15,7 +15,7 @@ const getRatings = (monthIdx: number, idealTemperature: number, idealSunshine: n
     name: location.name,
     latitude: location.latitude,
     longitude: location.longitude,
-    value: 5,
+    value: 5.4,
   }));
 };
 
