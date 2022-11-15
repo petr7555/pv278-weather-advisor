@@ -9,18 +9,18 @@ import StateContext from '../stateContext';
 
 const Location = () => {
   const { ratingValue } = useContext(StateContext);
-  const { locationName } = useParams<{ locationName: string }>();
+  const { locationId } = useParams<{ locationId: string }>();
 
-  if (locationName === undefined || !(locationName in locations)) {
+  if (locationId === undefined || !(locationId in locations)) {
     return <>
       <BackButton/>
       <div className={'prose prose-sm text-center max-w-none'}>
-        <h1>We are sorry, location '{locationName}' does not exist.</h1>
+        <h1>We are sorry, location with id '{locationId}' does not exist.</h1>
       </div>
     </>;
   }
-  // @ts-ignore We checked before that locationName is in locations
-  const location = locations[locationName];
+  // @ts-ignore We checked before that locationId is in locations
+  const location = locations[locationId];
 
   const rows = Array.from({ length: 12 }, (_, i) => ({
     month: i + 1,
@@ -34,7 +34,7 @@ const Location = () => {
     <>
       <BackButton/>
       <div className={'prose prose-xl text-center max-w-none'}>
-        <h1 className={'mb-2'}>{locationName}</h1>
+        <h1 className={'mb-2'}>{location.name}</h1>
         <Stars value={Math.round(ratingValue / 2)}/>
         <div className={'mx-4 lg:mx-16 mt-8'}>
           <Table rows={rows}/>

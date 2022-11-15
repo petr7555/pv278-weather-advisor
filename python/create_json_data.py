@@ -46,24 +46,26 @@ def create_json_data():
 
             metadata_file = extract_section(f"{FOLDER}/{stat}/{files[0]}", "METADATA")
             df = pd.read_csv(metadata_file, sep=";", decimal=",")
+            location_id = df["Stanice ID"].iloc[-1]
             name = df["Jméno stanice"].iloc[-1]
             latitude = df["Zeměpisná šířka"].iloc[-1]
             longitude = df["Zeměpisná délka"].iloc[-1]
 
-            if name not in result:
-                result[name] = {
+            if location_id not in result:
+                result[location_id] = {
+                    "id": location_id,
                     "name": name,
                     "latitude": latitude,
                     "longitude": longitude,
                 }
-            assert result[name]["latitude"] == latitude
-            assert result[name]["longitude"] == longitude
-            assert dict_stat_key not in result[name]
-            result[name][dict_stat_key] = average_per_months
+            assert result[location_id]["latitude"] == latitude
+            assert result[location_id]["longitude"] == longitude
+            assert dict_stat_key not in result[location_id]
+            result[location_id][dict_stat_key] = average_per_months
 
     # remove stations that do not have all statistics
     for key in list(result.keys()):
-        if len(result[key]) != 3 + len(STATS):
+        if len(result[key]) != 4 + len(STATS):
             print(f"Skipping {key}, it does not have all statistics.")
             del result[key]
 

@@ -8,7 +8,7 @@ const RoutesSwitch = () => {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />} />
-      <Route path="/location/:locationName" element={<Location />} />
+      <Route path="/location/:locationId" element={<Location />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="*" element={<Navigate replace to="/" />} />
     </Routes>

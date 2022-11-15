@@ -51,7 +51,7 @@ def move_unzip_decode_downloaded_files(source_dir, stat):
 regions_per_stat = 2
 locations_per_region = "ALL"
 # regions_per_stat = "ALL"
-start_at = 0
+start_at_region = 2
 
 
 def scrape_data():
@@ -63,7 +63,7 @@ def scrape_data():
         print(stat)
         driver.find_element(By.LINK_TEXT, stat).click()
 
-        for i in range(start_at, NUMBER_OF_REGIONS):
+        for i in range(start_at_region, NUMBER_OF_REGIONS):
             print("\tregion", i)
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, REGION_CSS_SELECTOR)))
             driver.find_elements(By.CSS_SELECTOR, REGION_CSS_SELECTOR)[i].click()
@@ -77,7 +77,7 @@ def scrape_data():
                 if locations_per_region != "ALL" and loc_idx == locations_per_region - 1:
                     break
             driver.find_element(By.LINK_TEXT, "Zpět na seznam krajů").click()
-            if regions_per_stat != "ALL" and i == regions_per_stat - 1:
+            if regions_per_stat != "ALL" and i == start_at_region + regions_per_stat - 1:
                 break
         driver.find_element(By.LINK_TEXT, "Zpět na úvodní stránku").click()
 

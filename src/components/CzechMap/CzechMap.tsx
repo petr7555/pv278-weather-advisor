@@ -70,7 +70,7 @@ const CzechMap: FC<Props> = ({
         const idx = elems[0].element.$context.dataIndex;
         const location = ratings[idx];
         setRatingValue(location.value);
-        navigate(`/location/${location.name}`);
+        navigate(`/location/${location.id}`);
       }
     },
     onHover: (event: any, elems: any[]) => {
