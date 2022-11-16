@@ -36,7 +36,7 @@ const Dashboard = () => {
     idealSnow: undefined,
     ratingValue: undefined,
   });
-
+  
   const ratings = (state.monthIdx !== undefined) ?
     getRatings(state.monthIdx, state.idealTemperature, state.idealSunshine, state.idealPrecipitation, state.idealSnow) : [];
 
@@ -110,15 +110,15 @@ const Dashboard = () => {
           <RangeWithIcons min={-10} max={30} step={5} value={idealTemperature} leftIcon={Cold} rightIcon={Hot}
             onChange={setIdealTemperature}/>
           {/* TODO In hours per month -> change to hours per day */}
-          <RangeWithIcons min={0} max={24} value={idealSunshine} step={2} leftIcon={MostlyCloudy}
+          <RangeWithIcons min={0} max={10} value={idealSunshine} step={1} leftIcon={MostlyCloudy}
             rightIcon={Sunny}
             onChange={setIdealSunshine}/>
           {/* TODO Daily precipitation in mm averaged over month */}
-          <RangeWithIcons min={0} max={100} value={idealPrecipitation} step={10} leftIcon={Cloudy}
+          <RangeWithIcons min={0} max={140} value={idealPrecipitation} step={20} leftIcon={Cloudy}
             rightIcon={Showers}
             onChange={setIdealPrecipitation}/>
           {/* TODO In cm */}
-          <RangeWithIcons min={0} max={100} value={idealSnow} step={10} leftIcon={SnowFlurries}
+          <RangeWithIcons min={0} max={90} value={idealSnow} step={10} leftIcon={SnowFlurries}
             rightIcon={Snow}
             onChange={setIdealSnow}/>
         </div>

@@ -1,4 +1,5 @@
 import json
+import math
 import os
 import re
 
@@ -13,6 +14,8 @@ STATS = [
     ("Úhrn srážek", "SUM", "precipitation"),
     ("Celková výška sněhové pokrývky", "MAX", "snow"),
 ]
+
+lengths_of_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 
 def create_json_data():
@@ -44,6 +47,11 @@ def create_json_data():
             merged_df = merged_df.mean()
             average_per_months = merged_df.to_list()
 
+            # convert hours per month to hours per day
+            if dict_stat_key == "sunshine":
+                average_per_months = [x / days_in_month for x, days_in_month in
+                                      zip(average_per_months, lengths_of_months)]
+
             metadata_file = extract_section(f"{FOLDER}/{stat}/{files[0]}", "METADATA")
             df = pd.read_csv(metadata_file, sep=";", decimal=",")
             location_id = df["Stanice ID"].iloc[-1]
@@ -68,6 +76,13 @@ def create_json_data():
         if len(result[key]) != 4 + len(STATS):
             print(f"Skipping {key}, it does not have all statistics.")
             del result[key]
+    # remove stations that have NaN values
+    for key in list(result.keys()):
+        for _, _, stat in STATS:
+            if any([math.isnan(x) for x in result[key][stat]]):
+                print(f"Skipping {key}, it has NaN values.")
+                del result[key]
+                break
 
     with open(f"locations.json", "w") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
