@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import CzechMap from '../CzechMap/CzechMap';
 import Select from '../Select';
 import RangeWithIcons from '../RangeWithIcons';
@@ -12,40 +12,80 @@ import { ReactComponent as SnowFlurries } from '../../icons/snow_flurries.svg';
 import { ReactComponent as Snow } from '../../icons/snow.svg';
 import getRatings from './getRatings';
 import activities from './activities';
-import StateContext from '../../stateContext';
+import useUrlState from '@ahooksjs/use-url-state';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+type UrlState = Partial<{
+  activity: string,
+  monthIdx: number,
+  idealTemperature: number,
+  idealSunshine: number,
+  idealPrecipitation: number,
+  idealSnow: number,
+  ratingValue: number,
+}>;
 
 const Dashboard = () => {
-  const {
-    activity, monthIdx, idealTemperature, idealSunshine, idealPrecipitation, idealSnow,
-    setActivity, setMonthIdx, setIdealTemperature, setIdealSunshine, setIdealPrecipitation, setIdealSnow
-  } = useContext(StateContext);
+  const [state, setState] = useUrlState<UrlState>({
+    activity: undefined,
+    monthIdx: undefined,
+    idealTemperature: undefined,
+    idealSunshine: undefined,
+    idealPrecipitation: undefined,
+    idealSnow: undefined,
+    ratingValue: undefined,
+  });
 
-  // TODO remove
-  console.log('idealTemperature', idealTemperature);
-  console.log('idealSunshine', idealSunshine);
-  console.log('idealPrecipitation', idealPrecipitation);
-  console.log('idealSnow', idealSnow);
-  console.log('monthIdx', monthIdx);
-
-  const ratings = (monthIdx !== undefined) ?
-    getRatings(monthIdx, idealTemperature, idealSunshine, idealPrecipitation, idealSnow) : [];
+  const ratings = (state.monthIdx !== undefined) ?
+    getRatings(state.monthIdx, state.idealTemperature, state.idealSunshine, state.idealPrecipitation, state.idealSnow) : [];
 
   const onActivityChange = (value: string) => {
     const activity = activities.find(activity => activity.name === value);
     if (activity) {
-      setActivity(activity.name);
-      setIdealTemperature(activity.idealTemperature);
-      setIdealSunshine(activity.idealSunshine);
-      setIdealPrecipitation(activity.idealPrecipitation);
-      setIdealSnow(activity.idealSnow);
+      setState({
+        ...state,
+        activity: activity.name,
+        idealTemperature: activity.idealTemperature,
+        idealSunshine: activity.idealSunshine,
+        idealPrecipitation: activity.idealPrecipitation,
+        idealSnow: activity.idealSnow,
+      });
     }
   };
 
   const onMonthChange = (value: string) => {
-    setMonthIdx(months.indexOf(value));
+    setState({
+      ...state,
+      monthIdx: months.indexOf(value)
+    });
+  };
+
+  const { activity, idealTemperature, idealSunshine, idealPrecipitation, idealSnow } = state;
+  
+  const setIdealTemperature = (value: number) => {
+    setState({
+      ...state,
+      idealTemperature: value,
+    });
+  };
+  const setIdealSunshine = (value: number) => {
+    setState({
+      ...state,
+      idealSunshine: value,
+    });
+  };
+  const setIdealPrecipitation = (value: number) => {
+    setState({
+      ...state,
+      idealPrecipitation: value,
+    });
+  };
+  const setIdealSnow = (value: number) => {
+    setState({
+      ...state,
+      idealSnow: value,
+    });
   };
 
   return (
@@ -55,13 +95,15 @@ const Dashboard = () => {
       </div>
       <div className={'flex flex-col'}>
         <div className={'flex-1 w-full items-center flex flex-col'}>
-          <Select initialOption={'What would you like to do?'} options={activities.map(activity => activity.name)}
+          <Select initialOption={'What would you like to do?'}
+            options={activities.map(activity => activity.name)}
             value={activity || 'What would you like to do?'} onChange={onActivityChange}/>
           <Select initialOption={'When would you like to go?'} options={months}
-            value={monthIdx ? months[monthIdx] : 'When would you like to go?'} onChange={onMonthChange}
-            className={"mt-4 mb-4"}/>
+            value={state.monthIdx ? months[state.monthIdx] : 'When would you like to go?'}
+            onChange={onMonthChange}
+            className={'mt-4 mb-4'}/>
         </div>
-        <div className={"flex-1 w-full items-center flex flex-col gap-3"}>
+        <div className={'flex-1 w-full items-center flex flex-col gap-3'}>
           {/* TODO find edge values */}
           {/* TODO explain what values mean */}
           {/* TODO In °C */}
@@ -76,7 +118,8 @@ const Dashboard = () => {
             rightIcon={Showers}
             onChange={setIdealPrecipitation}/>
           {/* TODO In cm */}
-          <RangeWithIcons min={0} max={100} value={idealSnow} step={10} leftIcon={SnowFlurries} rightIcon={Snow}
+          <RangeWithIcons min={0} max={100} value={idealSnow} step={10} leftIcon={SnowFlurries}
+            rightIcon={Snow}
             onChange={setIdealSnow}/>
         </div>
       </div>

@@ -1,10 +1,11 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import LogoutButton from './LogoutButton';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const { user } = useAuth0();
+  const location = useLocation();
   
   return (
     <div className="navbar bg-primary fixed">
@@ -19,7 +20,7 @@ const Header = () => {
             </div>
           </label>
           <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-secondary rounded-box w-52">
-            <li><Link to={"/profile"}>Profile</Link></li>
+            <li><Link to={`/profile${location.search}`}>Profile</Link></li>
             <li><LogoutButton/></li>
           </ul>
         </div>

@@ -1,11 +1,10 @@
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
 import { BubbleMapController, GeoFeature, ProjectionScale, SizeScale } from 'chartjs-chart-geo';
 import { CategoryScale, Chart as ChartJS, Legend, PointElement, RadialLinearScale, Tooltip } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 import cze from './czeFeatures.json';
 import { Rating } from '../Dashboard/getRatings';
-import { useNavigate } from 'react-router-dom';
-import StateContext from '../../stateContext';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 ChartJS.register(CategoryScale, PointElement, RadialLinearScale, Tooltip, Legend);
 ChartJS.register(BubbleMapController, GeoFeature, ProjectionScale, SizeScale);
@@ -17,8 +16,8 @@ type Props = {
 const CzechMap: FC<Props> = ({
   ratings
 }) => {
-  const { setRatingValue } = useContext(StateContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const labels = ratings.map(rating => rating.name);
 
@@ -68,9 +67,13 @@ const CzechMap: FC<Props> = ({
     onClick: (event: any, elems: any[]) => {
       if (elems.length > 0) {
         const idx = elems[0].element.$context.dataIndex;
-        const location = ratings[idx];
-        setRatingValue(location.value);
-        navigate(`/location/${location.id}`);
+        const loc = ratings[idx];
+        if (location.search.includes('ratingValue')) {
+          location.search = location.search.replace(/ratingValue=(0|[1-9]\d*)(\.\d+)?/, `ratingValue=${loc.value}`);
+        } else {
+          location.search = location.search + `&ratingValue=${loc.value}`;
+        }
+        navigate(`/location/${loc.id}${location.search}`);
       }
     },
     onHover: (event: any, elems: any[]) => {

@@ -1,15 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Table from './Table';
 import { useParams } from 'react-router-dom';
 import BackButton from './BackButton';
 import locations from '../data/locations.json';
-import StateContext from '../stateContext';
+import useUrlState from '@ahooksjs/use-url-state';
 
 
 const Location = () => {
-  const { ratingValue } = useContext(StateContext);
   const { locationId } = useParams<{ locationId: string }>();
-
+  const [{ ratingValue }] = useUrlState({
+    ratingValue: 0
+  });
+  
   if (locationId === undefined || !(locationId in locations)) {
     return <>
       <BackButton/>
