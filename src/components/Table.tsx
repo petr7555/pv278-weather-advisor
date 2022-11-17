@@ -8,6 +8,7 @@ import { ReactComponent as Showers } from '../icons/showers.svg';
 import { ReactComponent as Snow } from '../icons/snow.svg';
 import clsx from 'clsx';
 import useUrlState from '@ahooksjs/use-url-state';
+import DataSource from './DataSource';
 
 const icon = (Icon: FunctionComponent<SVGProps<SVGSVGElement> & { title?: string | undefined; }>) => {
   return <Icon style={{ width: '25px', marginRight: '3px' }}/>;
@@ -78,16 +79,19 @@ const Table: FC<Props> = ({ rows }) => {
   const [{ monthIdx }] = useUrlState({ monthIdx: undefined });
 
   return (
-    <DataGrid
-      rows={rows}
-      columns={columns}
-      disableColumnMenu
-      hideFooter={true}
-      autoHeight={true}
-      getRowId={(row) => row.month}
-      rowHeight={40}
-      getRowClassName={(params) => clsx((params.id === Number(monthIdx) + 1) && 'bg-secondary')}
-    />
+    <>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        disableColumnMenu
+        hideFooter={true}
+        autoHeight={true}
+        getRowId={(row) => row.month}
+        rowHeight={40}
+        getRowClassName={(params) => clsx((params.id === Number(monthIdx) + 1) && 'bg-secondary')}
+      />
+      <DataSource/>
+    </>
   );
 };
 

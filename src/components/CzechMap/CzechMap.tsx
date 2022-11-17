@@ -5,7 +5,8 @@ import { Chart } from 'react-chartjs-2';
 import cze from './czeFeatures.json';
 import { Rating } from '../Dashboard/getRatings';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useWindowSize } from 'usehooks-ts'
+import { useWindowSize } from 'usehooks-ts';
+import DataSource from '../DataSource';
 
 ChartJS.register(CategoryScale, PointElement, RadialLinearScale, Tooltip, Legend);
 ChartJS.register(BubbleMapController, GeoFeature, ProjectionScale, SizeScale);
@@ -78,11 +79,12 @@ const CzechMap: FC<Props> = ({
     },
   };
 
-  const position = width >= 1024 ? 'on the right' : "below";
+  const position = width >= 1024 ? 'on the right' : 'below';
   const hintText = `Choose an activity and month ${position} first.`;
-  
+
   return <div className="relative py-1">
     <Chart type={'bubbleMap'} data={data} options={options}/>
+    <DataSource className={"pr-8 pt-1"}/>
     {ratings.length === 0 && (
       <>
         <div
