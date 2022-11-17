@@ -22,12 +22,13 @@ The application is a PWA, so you can install it on your phone.
   The downside is that Surge does not provide SSL certificate for subdomains and without `https`,
   the PWA does not work. But this is acceptable for PR preview.
 
-## Data
-- source: https://www.chmi.cz/historicka-data/pocasi/mesicni-data/mesicni-data-dle-z.-123-1998-Sb
-
-## Color palettes
+## Used color palettes
 - https://cz.pinterest.com/pin/314900198926790245/
 - https://www.color-hex.com/color-palette/54458
 
 ## Credits
 - Landing page photo by [@jakubkriz](https://unsplash.com/@jakubkriz) on [Unsplash](https://unsplash.com/photos/06lv_LBX3pk);
+
+## Data
+- source: https://www.chmi.cz/historicka-data/pocasi/mesicni-data/mesicni-data-dle-z.-123-1998-Sb
+- terms of use: https://www.chmi.cz/files/portal/docs/meteo/ok/open_data/Podminky_uziti_udaju.pdf
