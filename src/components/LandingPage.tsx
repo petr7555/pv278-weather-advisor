@@ -4,7 +4,7 @@ import LoginButton from './LoginButton';
 
 const LandingPage = () => {
   return (
-    <div className="hero min-h-screen bg-top" style={{ backgroundImage: 'url("/landing_page_background.jpg")'}}>
+    <div className="hero min-h-screen bg-top" style={{ backgroundImage: 'url("/landing_page_background.avif")'}}>
       <div className="hero-content text-center text-neutral-content -mt-32" >
         <div className="max-w-lg">
           <img src={logo} className="w-1/2 h-1/2 mx-auto" alt="sun partly hidden behind a cloud" />

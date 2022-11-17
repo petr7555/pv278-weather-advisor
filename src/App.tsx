@@ -11,7 +11,7 @@ const App = () => {
   if (isLoading) {
     return (
       <div className="hero min-h-screen bg-top"
-        style={{ backgroundImage: 'url("/landing_page_background.jpg")' }}>
+        style={{ backgroundImage: 'url("/landing_page_background.avif")' }}>
         <progress className="progress w-56 progress-primary"></progress>
       </div>
     );
