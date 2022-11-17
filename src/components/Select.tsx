@@ -8,7 +8,7 @@ type Props = {
     onChange: (value: string) => void;
     className?: string;
 }
-// TODO reselection of the same option should reset values
+
 const Select: FC<Props> = ({ initialOption, options,value, onChange, className }) => {
 
   const onSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

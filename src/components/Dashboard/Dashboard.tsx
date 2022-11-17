@@ -66,24 +66,28 @@ const Dashboard = () => {
   const setIdealTemperature = (value: number) => {
     setState({
       ...state,
+      activity: "Custom",
       idealTemperature: value,
     });
   };
   const setIdealSunshine = (value: number) => {
     setState({
       ...state,
+      activity: "Custom",
       idealSunshine: value,
     });
   };
   const setIdealPrecipitation = (value: number) => {
     setState({
       ...state,
+      activity: "Custom",
       idealPrecipitation: value,
     });
   };
   const setIdealSnow = (value: number) => {
     setState({
       ...state,
+      activity: "Custom",
       idealSnow: value,
     });
   };
