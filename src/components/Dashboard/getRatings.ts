@@ -25,19 +25,18 @@ const roundTo = (value: number, decimals: number) => {
 };
 
 const getRatings = (monthIdx: number, idealTemperature: number, idealSunshine: number, idealPrecipitation: number, idealSnow: number): Rating[] => {
-  // TODO remove one we have edge values for all stats based on all regions 
-  const minTemperature = Math.min(...Object.values(locations).map(location => Math.min(...location.temperature)));
-  const maxTemperature = Math.max(...Object.values(locations).map(location => Math.max(...location.temperature)));
-  const minSunshine = Math.min(...Object.values(locations).map(location => Math.min(...location.sunshine)));
-  const maxSunshine = Math.max(...Object.values(locations).map(location => Math.max(...location.sunshine)));
-  const minPrecipitation = Math.min(...Object.values(locations).map(location => Math.min(...location.precipitation)));
-  const maxPrecipitation = Math.max(...Object.values(locations).map(location => Math.max(...location.precipitation)));
-  const minSnow = Math.min(...Object.values(locations).map(location => Math.min(...location.snow)));
-  const maxSnow = Math.max(...Object.values(locations).map(location => Math.max(...location.snow)));
-  console.log("temperature range", minTemperature, maxTemperature);
-  console.log("sunshine range", minSunshine, maxSunshine);
-  console.log("precipitation range", minPrecipitation, maxPrecipitation);
-  console.log("snow range", minSnow, maxSnow);
+  // const minTemperature = roundTo(Math.min(...Object.values(locations).map(location => Math.min(...location.temperature))), 2);
+  // const maxTemperature = roundTo(Math.max(...Object.values(locations).map(location => Math.max(...location.temperature))),2);
+  // const minSunshine = roundTo(Math.min(...Object.values(locations).map(location => Math.min(...location.sunshine))),2);
+  // const maxSunshine = roundTo(Math.max(...Object.values(locations).map(location => Math.max(...location.sunshine))),2);
+  // const minPrecipitation = roundTo(Math.min(...Object.values(locations).map(location => Math.min(...location.precipitation))),2);
+  // const maxPrecipitation = roundTo(Math.max(...Object.values(locations).map(location => Math.max(...location.precipitation))),2);
+  // const minSnow = roundTo(Math.min(...Object.values(locations).map(location => Math.min(...location.snow))),2);
+  // const maxSnow = roundTo(Math.max(...Object.values(locations).map(location => Math.max(...location.snow))),2);
+  // console.log(`Temperature range in data: [${minTemperature}, ${maxTemperature}]`);
+  // console.log(`Sunshine range in data: [${minSunshine}, ${maxSunshine}]`);
+  // console.log(`Precipitation range in data: [${minPrecipitation}, ${maxPrecipitation}]`);
+  // console.log(`Snow range in data: [${minSnow}, ${maxSnow}]`);
   
   const temperatureErrors = Object.values(locations).map(location => error(location.temperature[monthIdx], idealTemperature));
   const sunshineErrors = Object.values(locations).map(location => error(location.sunshine[monthIdx], idealSunshine));

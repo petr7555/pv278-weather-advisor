@@ -13,17 +13,18 @@ import { ReactComponent as Snow } from '../../icons/snow.svg';
 import getRatings from './getRatings';
 import activities from './activities';
 import useUrlState from '@ahooksjs/use-url-state';
+import rangeConfig from './rangeConfig';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 type UrlState = Partial<{
-  activity: string,
-  monthIdx: number,
-  idealTemperature: number,
-  idealSunshine: number,
-  idealPrecipitation: number,
-  idealSnow: number,
-  ratingValue: number,
+    activity: string,
+    monthIdx: number,
+    idealTemperature: number,
+    idealSunshine: number,
+    idealPrecipitation: number,
+    idealSnow: number,
+    ratingValue: number,
 }>;
 
 const Dashboard = () => {
@@ -36,7 +37,7 @@ const Dashboard = () => {
     idealSnow: undefined,
     ratingValue: undefined,
   });
-  
+
   const ratings = (state.monthIdx !== undefined) ?
     getRatings(state.monthIdx, state.idealTemperature, state.idealSunshine, state.idealPrecipitation, state.idealSnow) : [];
 
@@ -62,32 +63,32 @@ const Dashboard = () => {
   };
 
   const { activity, idealTemperature, idealSunshine, idealPrecipitation, idealSnow } = state;
-  
+
   const setIdealTemperature = (value: number) => {
     setState({
       ...state,
-      activity: "Custom",
+      activity: 'Custom',
       idealTemperature: value,
     });
   };
   const setIdealSunshine = (value: number) => {
     setState({
       ...state,
-      activity: "Custom",
+      activity: 'Custom',
       idealSunshine: value,
     });
   };
   const setIdealPrecipitation = (value: number) => {
     setState({
       ...state,
-      activity: "Custom",
+      activity: 'Custom',
       idealPrecipitation: value,
     });
   };
   const setIdealSnow = (value: number) => {
     setState({
       ...state,
-      activity: "Custom",
+      activity: 'Custom',
       idealSnow: value,
     });
   };
@@ -108,21 +109,20 @@ const Dashboard = () => {
             className={'mt-4 mb-4'}/>
         </div>
         <div className={'flex-1 w-full items-center flex flex-col gap-3'}>
-          {/* TODO find edge values */}
-          {/* TODO explain what values mean */}
-          <RangeWithIcons min={-10} max={30} step={5} value={idealTemperature} leftIcon={Cold} rightIcon={Hot}
-            unit="°C" dataTip={"Average air temperature in selected month."} onChange={setIdealTemperature}/>
-          {/* TODO In hours per month -> change to hours per day */}
-          <RangeWithIcons min={0} max={10} value={idealSunshine} step={1} leftIcon={MostlyCloudy}
-            rightIcon={Sunny} unit={"hours / day"} dataTip={"Average hours of sunshine per day in selected month."}
+          <RangeWithIcons {...rangeConfig.temperature} value={idealTemperature} leftIcon={Cold} rightIcon={Hot}
+            unit="°C" dataTip={'Average air temperature in selected month.'}
+            onChange={setIdealTemperature}/>
+          <RangeWithIcons {...rangeConfig.sunshine} value={idealSunshine} leftIcon={MostlyCloudy}
+            rightIcon={Sunny} unit={'hours / day'}
+            dataTip={'Average hours of sunshine per day in selected month.'}
             onChange={setIdealSunshine}/>
-          {/* TODO Daily precipitation in mm averaged over month */}
-          <RangeWithIcons min={0} max={140} value={idealPrecipitation} step={20} leftIcon={Cloudy}
-            rightIcon={Showers} unit={"mm / day"} dataTip={"Average daily precipitation in millimeters in selected month."}
+          <RangeWithIcons {...rangeConfig.precipitation} value={idealPrecipitation} leftIcon={Cloudy}
+            rightIcon={Showers} unit={'mm / day'}
+            dataTip={'Average daily precipitation in millimeters in selected month.'}
             onChange={setIdealPrecipitation}/>
-          {/* TODO In cm */}
-          <RangeWithIcons min={0} max={90} value={idealSnow} step={10} leftIcon={SnowFlurries}
-            rightIcon={Snow} unit={"cm"} dataTip={"Average total snow cover height in centimeters in selected month."}
+          <RangeWithIcons {...rangeConfig.snow} value={idealSnow} leftIcon={SnowFlurries}
+            rightIcon={Snow} unit={'cm'}
+            dataTip={'Average total snow cover height in centimeters in selected month.'}
             onChange={setIdealSnow}/>
         </div>
       </div>
