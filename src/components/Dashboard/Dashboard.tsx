@@ -111,7 +111,7 @@ const Dashboard = () => {
           {/* TODO find edge values */}
           {/* TODO explain what values mean */}
           <RangeWithIcons min={-10} max={30} step={5} value={idealTemperature} leftIcon={Cold} rightIcon={Hot}
-            unit="°C" dataTip={"Average temperature in selected month."} onChange={setIdealTemperature}/>
+            unit="°C" dataTip={"Average air temperature in selected month."} onChange={setIdealTemperature}/>
           {/* TODO In hours per month -> change to hours per day */}
           <RangeWithIcons min={0} max={10} value={idealSunshine} step={1} leftIcon={MostlyCloudy}
             rightIcon={Sunny} unit={"hours / day"} dataTip={"Average hours of sunshine per day in selected month."}

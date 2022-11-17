@@ -25,7 +25,7 @@ const columns: GridColDef[] = [
     )
   },
   {
-    field: 'temperature', headerName: 'Average air temperature', type: 'number', flex: 2,
+    field: 'temperature', headerName: 'Average air temperature (°C)', type: 'number', flex: 2,
     renderHeader: (params: GridColumnHeaderParams) => (
       <>
         {icon(Hot)}
@@ -34,7 +34,7 @@ const columns: GridColDef[] = [
     )
   },
   {
-    field: 'sunshine', headerName: 'Duration of sunshine', type: 'number', flex: 2,
+    field: 'sunshine', headerName: 'Duration of sunshine (hours/day)', type: 'number', flex: 2,
     renderHeader: (params: GridColumnHeaderParams) => (
       <>
         {icon(Sunny)}
@@ -43,7 +43,7 @@ const columns: GridColDef[] = [
     )
   },
   {
-    field: 'precipitation', headerName: 'Average precipitation', type: 'number', flex: 2,
+    field: 'precipitation', headerName: 'Average precipitation (mm/day)', type: 'number', flex: 2,
     renderHeader: (params: GridColumnHeaderParams) => (
       <>
         {icon(Showers)}
@@ -52,7 +52,7 @@ const columns: GridColDef[] = [
     )
   },
   {
-    field: 'snow', headerName: 'Height of snow cover', type: 'number', flex: 2,
+    field: 'snow', headerName: 'Height of snow cover (cm)', type: 'number', flex: 2,
     renderHeader: (params: GridColumnHeaderParams) => (
       <>
         {icon(Snow)}
