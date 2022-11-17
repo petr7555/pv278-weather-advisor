@@ -33,7 +33,8 @@ const CzechMap: FC<Props> = ({
         data: ratings,
         outlineBorderWidth: 2,
         outlineBorderColor: 'darkgreen',
-        outlineBackgroundColor: 'lightgreen',
+        // TODO find the right color
+        outlineBackgroundColor: '#1cf515',
       },
       // {
       //   label: 'Other',
