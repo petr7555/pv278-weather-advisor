@@ -110,20 +110,19 @@ const Dashboard = () => {
         <div className={'flex-1 w-full items-center flex flex-col gap-3'}>
           {/* TODO find edge values */}
           {/* TODO explain what values mean */}
-          {/* TODO In °C */}
           <RangeWithIcons min={-10} max={30} step={5} value={idealTemperature} leftIcon={Cold} rightIcon={Hot}
-            onChange={setIdealTemperature}/>
+            unit="°C" dataTip={"Average temperature in selected month."} onChange={setIdealTemperature}/>
           {/* TODO In hours per month -> change to hours per day */}
           <RangeWithIcons min={0} max={10} value={idealSunshine} step={1} leftIcon={MostlyCloudy}
-            rightIcon={Sunny}
+            rightIcon={Sunny} unit={"hours / day"} dataTip={"Average hours of sunshine per day in selected month."}
             onChange={setIdealSunshine}/>
           {/* TODO Daily precipitation in mm averaged over month */}
           <RangeWithIcons min={0} max={140} value={idealPrecipitation} step={20} leftIcon={Cloudy}
-            rightIcon={Showers}
+            rightIcon={Showers} unit={"mm / day"} dataTip={"Average daily precipitation in millimeters in selected month."}
             onChange={setIdealPrecipitation}/>
           {/* TODO In cm */}
           <RangeWithIcons min={0} max={90} value={idealSnow} step={10} leftIcon={SnowFlurries}
-            rightIcon={Snow}
+            rightIcon={Snow} unit={"cm"} dataTip={"Average total snow cover height in centimeters in selected month."}
             onChange={setIdealSnow}/>
         </div>
       </div>
