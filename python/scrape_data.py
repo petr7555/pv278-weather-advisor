@@ -10,9 +10,14 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 MONTHLY_DATA_URL = "https://www.chmi.cz/historicka-data/pocasi/mesicni-data/mesicni-data-dle-z.-123-1998-Sb"
-STATS = ["Průměrná teplota vzduchu", "Úhrn srážek", "Celková výška sněhové pokrývky", "Doba trvání slunečního svitu"]
+STATS = [
+    "Průměrná teplota vzduchu",
+    "Úhrn srážek",
+    "Celková výška sněhové pokrývky",
+    "Doba trvání slunečního svitu"
+]
 REGION_CSS_SELECTOR = "br + table td a"
-LOCATION_CSS_SELECTOR = "td:first-child a"
+LOCATION_CSS_SELECTOR = "table + table td:first-child a"
 DOWNLOADS_FOLDER = "/Users/petr.janik/Downloads"
 NUMBER_OF_REGIONS = 14
 
@@ -51,7 +56,7 @@ def move_unzip_decode_downloaded_files(source_dir, stat):
 regions_per_stat = 2
 locations_per_region = "ALL"
 # regions_per_stat = "ALL"
-start_at_region = 8
+start_at_region = 0
 
 
 def scrape_data():
