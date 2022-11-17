@@ -25,19 +25,6 @@ const roundTo = (value: number, decimals: number) => {
 };
 
 const getRatings = (monthIdx: number, idealTemperature: number, idealSunshine: number, idealPrecipitation: number, idealSnow: number): Rating[] => {
-  // const minTemperature = roundTo(Math.min(...Object.values(locations).map(location => Math.min(...location.temperature))), 2);
-  // const maxTemperature = roundTo(Math.max(...Object.values(locations).map(location => Math.max(...location.temperature))),2);
-  // const minSunshine = roundTo(Math.min(...Object.values(locations).map(location => Math.min(...location.sunshine))),2);
-  // const maxSunshine = roundTo(Math.max(...Object.values(locations).map(location => Math.max(...location.sunshine))),2);
-  // const minPrecipitation = roundTo(Math.min(...Object.values(locations).map(location => Math.min(...location.precipitation))),2);
-  // const maxPrecipitation = roundTo(Math.max(...Object.values(locations).map(location => Math.max(...location.precipitation))),2);
-  // const minSnow = roundTo(Math.min(...Object.values(locations).map(location => Math.min(...location.snow))),2);
-  // const maxSnow = roundTo(Math.max(...Object.values(locations).map(location => Math.max(...location.snow))),2);
-  // console.log(`Temperature range in data: [${minTemperature}, ${maxTemperature}]`);
-  // console.log(`Sunshine range in data: [${minSunshine}, ${maxSunshine}]`);
-  // console.log(`Precipitation range in data: [${minPrecipitation}, ${maxPrecipitation}]`);
-  // console.log(`Snow range in data: [${minSnow}, ${maxSnow}]`);
-  
   const temperatureErrors = Object.values(locations).map(location => error(location.temperature[monthIdx], idealTemperature));
   const sunshineErrors = Object.values(locations).map(location => error(location.sunshine[monthIdx], idealSunshine));
   const precipitationErrors = Object.values(locations).map(location => error(location.precipitation[monthIdx], idealPrecipitation));

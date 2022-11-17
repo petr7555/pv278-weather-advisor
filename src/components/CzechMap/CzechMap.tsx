@@ -36,12 +36,6 @@ const CzechMap: FC<Props> = ({
         // TODO find the right color
         outlineBackgroundColor: '#1cf515',
       },
-      // {
-      //   label: 'Other',
-      //   outline: cze.features,
-      //   backgroundColor: 'orange',
-      //   data: points,
-      // }
     ]
   };
 
