@@ -32,7 +32,7 @@ const CzechMap: FC<Props> = ({
         backgroundColor: '#ffe963',
         data: ratings,
         outlineBorderWidth: 2,
-        outlineBorderColor: 'red',
+        outlineBorderColor: 'darkgreen',
         outlineBackgroundColor: 'lightgreen',
       },
       // {
