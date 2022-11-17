@@ -5,6 +5,7 @@ import { Chart } from 'react-chartjs-2';
 import cze from './czeFeatures.json';
 import { Rating } from '../Dashboard/getRatings';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useWindowSize } from 'usehooks-ts'
 
 ChartJS.register(CategoryScale, PointElement, RadialLinearScale, Tooltip, Legend);
 ChartJS.register(BubbleMapController, GeoFeature, ProjectionScale, SizeScale);
@@ -18,6 +19,7 @@ const CzechMap: FC<Props> = ({
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { width } = useWindowSize();
 
   const labels = ratings.map(rating => rating.name);
 
@@ -82,8 +84,25 @@ const CzechMap: FC<Props> = ({
     },
   };
 
-
-  return <Chart type={'bubbleMap'} data={data} options={options}/>;
+  const position = width >= 1024 ? 'on the right' : "below";
+  const hintText = `Choose an activity and month ${position} first.`;
+  
+  return <div className="relative py-1">
+    <Chart type={'bubbleMap'} data={data} options={options}/>
+    {ratings.length === 0 && (
+      <>
+        <div
+          className={'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ' +
+                        'w-full h-full'}
+          style={{
+            backdropFilter: 'blur(2px)',
+            backgroundColor: 'rgba(255, 255, 255, 0.5)',
+          }}></div>
+        <p className={'text-center text-3xl ' +
+                    'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5/6'}
+        >{hintText}</p>
+      </>)}
+  </div>;
 };
 
 export default CzechMap;
