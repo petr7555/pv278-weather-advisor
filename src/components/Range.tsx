@@ -15,7 +15,7 @@ const Range: FC<Props> = ({ min, max, step, value, className, onChange }) => {
   };
 
   return (
-    <div className={clsx('max-w-xs', className)}>
+    <div className={clsx('w-full', className)}>
       <input type="range" className="range range-sm range-primary" step={step} min={min} max={max} value={value}
         onChange={onSelectChange}/>
       <div className="w-max-xs flex justify-between text-xs px-1 ">

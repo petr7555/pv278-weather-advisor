@@ -98,7 +98,7 @@ const Dashboard = () => {
       <div className={'my-10 w-full max-h-4/5'}>
         <CzechMap ratings={ratings}/>
       </div>
-      <div className={'flex flex-col'}>
+      <div className={'flex flex-col w-full max-w-[500px]'}>
         <div className={'flex-1 w-full items-center flex flex-col'}>
           <Select initialOption={'What would you like to do?'}
             options={activities.map(activity => activity.name)}
@@ -108,7 +108,7 @@ const Dashboard = () => {
             onChange={onMonthChange}
             className={'mt-4 mb-4'}/>
         </div>
-        <div className={'flex-1 w-full items-center flex flex-col gap-3'}>
+        <div className={'flex-1 w-full items-center flex flex-col gap-3 px-1'}>
           <RangeWithIcons {...rangeConfig.temperature} value={idealTemperature} leftIcon={Cold} rightIcon={Hot}
             unit="°C" dataTip={'Average air temperature in selected month.'}
             onChange={setIdealTemperature}/>
