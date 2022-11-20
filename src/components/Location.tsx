@@ -37,9 +37,9 @@ const Location = () => {
       <div className={'prose prose-xl text-center max-w-none'}>
         <h1 className={'mb-2'}>{location.name}</h1>
         <p className={"text-2xl mt-0 mb-4"}>{ratingValue} / 10</p>
-        <div className={'mx-4 lg:mx-16'}>
-          <Table rows={rows}/>
-        </div>
+      </div>
+      <div className={'mx-4 lg:mx-16'}>
+        <Table rows={rows}/>
       </div>
     </>
   );

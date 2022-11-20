@@ -90,7 +90,7 @@ const Table: FC<Props> = ({ rows }) => {
         rowHeight={40}
         getRowClassName={(params) => clsx((params.id === Number(monthIdx) + 1) && 'bg-secondary')}
       />
-      <DataSource/>
+      <DataSource className={"py-3"}/>
     </>
   );
 };
