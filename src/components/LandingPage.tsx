@@ -1,41 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import { animated, useTransition } from 'react-spring';
+import { v4 as uuidv4 } from 'uuid';
 import { ReactComponent as Logo } from '../icons/weather.svg';
 import { ReactComponent as Lightning } from '../icons/lightning.svg';
 import LoginButton from './LoginButton';
 
 type Item = {
+  key: string;
   x: number;
   y: number;
+  duration: number;
 }
 
 const getRandomInRange = (min: number, max: number) => {
   return Math.random() * (max - min) + min;
 };
 
+const VELOCITY = 0.4;
+const TIME_PER_LIGHTNING = 50;
+
 const generateLightning = (): Item => {
   const halfWidth = window.innerWidth / 2;
-  const halfHeight = window.innerHeight / 2;
   const xOffset = 50;
-  return {
-    x: getRandomInRange(-(halfWidth - xOffset), halfWidth - xOffset),
-    y: getRandomInRange(0, halfHeight),
-  };
+  const x = getRandomInRange(-(halfWidth - xOffset), halfWidth - xOffset);
+  const y = getRandomInRange(0, window.innerHeight * 3/5);
+  const distance = Math.sqrt(x * x + y * y);
+  const duration = distance / getRandomInRange(VELOCITY * 0.8, VELOCITY * 1.2);
+  const key = uuidv4();
+  return {key, x, y, duration};
 };
 
-const DURATION = 1000;
-const TIME_PER_LIGHTNING = 100;
 
 const LandingPage = () => {
   const [items, setItems] = useState<Item[]>([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setItems(items => [...items, generateLightning()]);
+      const newItem = generateLightning();
+      
+      setItems(items => [...items, newItem]);
 
       setTimeout(() => {
-        setItems(items => items.slice(1));
-      }, DURATION);
+        setItems(items => items.filter(item => item.key !== newItem.key));
+      }, newItem.duration);
 
     }, TIME_PER_LIGHTNING);
 
@@ -53,7 +60,7 @@ const LandingPage = () => {
         x: item.x,
         y: item.y,
         opacity: 0,
-        config: { duration: DURATION }
+        config: { duration: item.duration },
       })),
   });
 
