@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 const Header = () => {
   const { user } = useAuth0();
   const location = useLocation();
-  
+
   return (
     <div className="navbar bg-primary fixed z-10">
       <div className="flex-1"></div>
@@ -15,7 +15,7 @@ const Header = () => {
           <label tabIndex={0} className="btn btn-secondary btn-circle avatar w-16 h-16 bg-transparent border-0">
             <div className="w-14 rounded-full">
               {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-              <img src={user?.picture} alt="profile picture of logged in user" 
+              <img draggable="false" src={user?.picture} alt="profile picture of logged in user"
                 referrerPolicy="no-referrer"/>
             </div>
           </label>
