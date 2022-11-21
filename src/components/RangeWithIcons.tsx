@@ -1,6 +1,5 @@
 import React, { FC, FunctionComponent, SVGProps } from 'react';
 import Range from './Range';
-import { useWindowSize } from 'usehooks-ts';
 
 type Props = {
     min: number;
@@ -21,15 +20,13 @@ const RangeWithIcons: FC<Props> = ({
   unit, dataTip,
   onChange
 }) => {
-
-  const { width } = useWindowSize();
   const iconSize = '2.5rem';
-
-  const tooltipPosition = width < 500 ? 'right' : 'top';
   
   return (
     <div className={'flex flex-1 justify-center w-full'}>
-      <div className={`tooltip tooltip-secondary tooltip-${tooltipPosition} before:border-2 before:border-primary before:text-neutral before:w-48 md:tooltip-top md:before:w-max before:content-[attr(data-tip)] z-10`} data-tip={dataTip}>
+      <div className={`tooltip tooltip-secondary tooltip-right z-10
+      before:text-neutral before:w-48 md:before:w-max before:content-[attr(data-tip)]`}
+      data-tip={dataTip}>
         <div className={'flex flex-col items-center w-20'}>
           <LeftIcon style={{
             width: iconSize,

@@ -15,7 +15,7 @@ const getRandomInRange = (min: number, max: number) => {
 };
 
 const VELOCITY = 0.4;
-const TIME_PER_LIGHTNING = 50;
+const TIME_PER_LIGHTNING = 100;
 
 const generateLightning = (): Item => {
   const halfWidth = window.innerWidth / 2;
