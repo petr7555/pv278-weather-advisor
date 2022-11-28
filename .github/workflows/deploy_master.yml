@@ -28,8 +28,7 @@ jobs:
         
       - name: Build
         run: |
-          npm run build
-          mv ./build/index.html ./build/200.html
+          npm run build-ci
       
       - name: Deploy
         run: npx surge ./build pv278-weather-advisor.surge.sh --token ${{ secrets.SURGE_TOKEN }}

@@ -27,7 +27,7 @@ jobs:
         run: npm ci
         
       - name: Build
-        run: npm run build
+        run: npm run build-ci
       
       - name: Deploy
         uses: petr7555/surge-preview@v3
