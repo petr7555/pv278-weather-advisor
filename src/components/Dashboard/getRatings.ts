@@ -57,7 +57,7 @@ const getRatings = (monthIdx: number, idealTemperature: number, idealSunshine: n
       name: location.name,
       latitude: location.latitude,
       longitude: location.longitude,
-      value: roundTo(normalize(errors[idx], minError, maxError), 1),
+      value: 10 - roundTo(normalize(errors[idx], minError, maxError), 1),
     });
   });
 };

@@ -108,7 +108,7 @@ const Dashboard = () => {
             onChange={onMonthChange}
             className={'mt-4 mb-4'}/>
         </div>
-        <div className={'flex-1 w-full items-center flex flex-col gap-3 px-1'}>
+        <div className={'flex-1 w-full items-center flex flex-col gap-3 px-1 select-none'}>
           <RangeWithIcons {...rangeConfig.temperature} value={idealTemperature} leftIcon={Cold} rightIcon={Hot}
             unit="°C" dataTip={'Average air temperature in selected month.'}
             onChange={setIdealTemperature}/>
