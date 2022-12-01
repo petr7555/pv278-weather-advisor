@@ -1,4 +1,5 @@
 import locations from '../../data/locations.json';
+import rangeConfig from './rangeConfig';
 
 export type Rating = {
     id: string;
@@ -24,7 +25,7 @@ const roundTo = (value: number, decimals: number) => {
   return Number(Math.round(Number(value + 'e' + decimals)) + 'e-' + decimals);
 };
 
-const getRatings = (monthIdx: number, idealTemperature: number, idealSunshine: number, idealPrecipitation: number, idealSnow: number): Rating[] => {
+const getRatings = (monthIdx: number, idealTemperature: number, idealSunshine: number, idealPrecipitation: number, idealSnow: number, stationsCount: number): Rating[] => {
   const temperatureErrors = Object.values(locations).map(location => error(location.temperature[monthIdx], idealTemperature));
   const sunshineErrors = Object.values(locations).map(location => error(location.sunshine[monthIdx], idealSunshine));
   const precipitationErrors = Object.values(locations).map(location => error(location.precipitation[monthIdx], idealPrecipitation));
@@ -50,8 +51,9 @@ const getRatings = (monthIdx: number, idealTemperature: number, idealSunshine: n
 
   const minError = Math.min(...errors);
   const maxError = Math.max(...errors);
+  const maxStationsCount = stationsCount >= 50 ? Object.entries(locations).length : stationsCount;
 
-  return Object.values(locations).map((location, idx) => {
+  const values = Object.values(locations).map((location, idx) => {
     return ({
       id: location.id,
       name: location.name,
@@ -59,7 +61,10 @@ const getRatings = (monthIdx: number, idealTemperature: number, idealSunshine: n
       longitude: location.longitude,
       value: 10 - roundTo(normalize(errors[idx], minError, maxError), 1),
     });
-  });
+  })
+  const allStationsSelected = stationsCount >= rangeConfig.stations.max;
+
+  return allStationsSelected ? values : values.sort((a, b) => b.value - a.value).slice(0,maxStationsCount);
 };
 
 export default getRatings;
