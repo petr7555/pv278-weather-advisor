@@ -10,6 +10,8 @@ import { ReactComponent as Cloudy } from '../../icons/cloudy.svg';
 import { ReactComponent as Showers } from '../../icons/showers.svg';
 import { ReactComponent as SnowFlurries } from '../../icons/snow_flurries.svg';
 import { ReactComponent as Snow } from '../../icons/snow.svg';
+import { ReactComponent as House } from '../../icons/house.svg';
+import { ReactComponent as Houses } from '../../icons/houses.svg';
 import getRatings from './getRatings';
 import activities from './activities';
 import useUrlState from '@ahooksjs/use-url-state';
@@ -24,6 +26,7 @@ type UrlState = Partial<{
     idealSunshine: number,
     idealPrecipitation: number,
     idealSnow: number,
+    stationsCount: number,
     ratingValue: number,
 }>;
 
@@ -35,11 +38,12 @@ const Dashboard = () => {
     idealSunshine: undefined,
     idealPrecipitation: undefined,
     idealSnow: undefined,
+    stationsCount: undefined,
     ratingValue: undefined,
   });
 
   const ratings = (state.monthIdx !== undefined) ?
-    getRatings(state.monthIdx, state.idealTemperature, state.idealSunshine, state.idealPrecipitation, state.idealSnow) : [];
+    getRatings(state.monthIdx, state.idealTemperature, state.idealSunshine, state.idealPrecipitation, state.idealSnow, state.stationsCount) : [];
 
   const onActivityChange = (value: string) => {
     const activity = activities.find(activity => activity.name === value);
@@ -51,6 +55,7 @@ const Dashboard = () => {
         idealSunshine: activity.idealSunshine,
         idealPrecipitation: activity.idealPrecipitation,
         idealSnow: activity.idealSnow,
+        stationsCount: stationsCount,
       });
     }
   };
@@ -62,7 +67,7 @@ const Dashboard = () => {
     });
   };
 
-  const { activity, idealTemperature, idealSunshine, idealPrecipitation, idealSnow } = state;
+  const { activity, idealTemperature, idealSunshine, idealPrecipitation, idealSnow, stationsCount } = state;
 
   const setIdealTemperature = (value: number) => {
     setState({
@@ -92,6 +97,13 @@ const Dashboard = () => {
       idealSnow: value,
     });
   };
+  const setStationsCount = (value: number) => {
+    setState({
+      ...state,
+      activity: activity,
+      stationsCount: value,
+    })
+  }
 
   return (
     <div className={'flex flex-col lg:flex-row justify-items-center items-center h-full'}>
@@ -124,6 +136,11 @@ const Dashboard = () => {
             rightIcon={Snow} unit={'cm'}
             dataTip={'Average total snow cover height in centimeters in selected month.'}
             onChange={setIdealSnow}/>
+          <RangeWithIcons {...rangeConfig.stations} value={stationsCount} leftIcon={House}
+            rightIcon={Houses} unit = {""}
+            dataTip={'Number of best results - number of top stations'}
+            onChange={setStationsCount}
+            range={'range-secondary'}/>
         </div>
       </div>
     </div>

@@ -11,14 +11,18 @@ type Props = {
     rightIcon: FunctionComponent<SVGProps<SVGSVGElement> & { title?: string | undefined; }>;
     unit: string;
     dataTip: string;
+    unspecifiedMax?: boolean;
     className?: string;
+    range?: string;
 }
 const RangeWithIcons: FC<Props> = ({
   min, max,
   value, step,
   leftIcon: LeftIcon, rightIcon: RightIcon,
   unit, dataTip,
-  onChange
+  onChange,
+  range = 'range-primary',
+  unspecifiedMax = false
 }) => {
   const iconSize = '2.5rem';
   
@@ -35,7 +39,7 @@ const RangeWithIcons: FC<Props> = ({
           <div className={'text-sm text-neutral'}>{unit}</div>
         </div>
       </div>
-      <Range className="flex-1 mt-2 mx-2" min={min} max={max} step={step} value={value} onChange={onChange}/>
+      <Range className='flex-1 mt-2 mx-2' rangeStyle={range} min={min} max={max} step={step} value={value} onChange={onChange} unspecifiedMax={unspecifiedMax}/>
       <RightIcon style={{
         width: iconSize,
         height: iconSize

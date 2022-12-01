@@ -23,6 +23,13 @@ const rangeConfig = {
     max: 200,
     step: 20,
   },
+  /*  */
+  stations: {
+    min: 10,
+    max: 50,
+    step: 10,
+    unspecifiedMax: true,
+  },
 };
 
 export default rangeConfig;
