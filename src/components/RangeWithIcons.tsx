@@ -2,18 +2,18 @@ import React, { FC, FunctionComponent, SVGProps } from 'react';
 import Range from './Range';
 
 type Props = {
-    min: number;
-    max: number;
-    step: number;
-    value: number;
-    onChange: (value: number) => void;
-    leftIcon: FunctionComponent<SVGProps<SVGSVGElement> & { title?: string | undefined; }>;
-    rightIcon: FunctionComponent<SVGProps<SVGSVGElement> & { title?: string | undefined; }>;
-    unit: string;
-    dataTip: string;
-    unspecifiedMax?: boolean;
-    className?: string;
-    range?: string;
+  min: number;
+  max: number;
+  step: number;
+  value: number;
+  onChange: (value: number) => void;
+  leftIcon: FunctionComponent<SVGProps<SVGSVGElement> & { title?: string | undefined; }>;
+  rightIcon: FunctionComponent<SVGProps<SVGSVGElement> & { title?: string | undefined; }>;
+  unit: string;
+  dataTip: string;
+  unspecifiedMax?: boolean;
+  className?: string;
+  range?: string;
 }
 const RangeWithIcons: FC<Props> = ({
   min, max,
@@ -25,7 +25,7 @@ const RangeWithIcons: FC<Props> = ({
   unspecifiedMax = false
 }) => {
   const iconSize = '2.5rem';
-  
+
   return (
     <div className={'flex flex-1 justify-center w-full'}>
       <div className={`tooltip tooltip-secondary tooltip-right z-10
@@ -39,7 +39,8 @@ const RangeWithIcons: FC<Props> = ({
           <div className={'text-sm text-neutral'}>{unit}</div>
         </div>
       </div>
-      <Range className='flex-1 mt-2 mx-2' rangeStyle={range} min={min} max={max} step={step} value={value} onChange={onChange} unspecifiedMax={unspecifiedMax}/>
+      <Range className="flex-1 mt-2 mx-2" rangeStyle={range} min={min} max={max} step={step} value={value}
+        onChange={onChange} unspecifiedMax={unspecifiedMax}/>
       <RightIcon style={{
         width: iconSize,
         height: iconSize

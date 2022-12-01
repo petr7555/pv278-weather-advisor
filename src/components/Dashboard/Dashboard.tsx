@@ -20,14 +20,14 @@ import rangeConfig from './rangeConfig';
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 type UrlState = Partial<{
-    activity: string,
-    monthIdx: number,
-    idealTemperature: number,
-    idealSunshine: number,
-    idealPrecipitation: number,
-    idealSnow: number,
-    stationsCount: number,
-    ratingValue: number,
+  activity: string,
+  monthIdx: number,
+  idealTemperature: number,
+  idealSunshine: number,
+  idealPrecipitation: number,
+  idealSnow: number,
+  stationsCount: number,
+  ratingValue: number,
 }>;
 
 const Dashboard = () => {
@@ -102,8 +102,8 @@ const Dashboard = () => {
       ...state,
       activity: activity,
       stationsCount: value,
-    })
-  }
+    });
+  };
 
   return (
     <div className={'flex flex-col lg:flex-row justify-items-center items-center h-full'}>
@@ -137,7 +137,7 @@ const Dashboard = () => {
             dataTip={'Average total snow cover height in centimeters in selected month.'}
             onChange={setIdealSnow}/>
           <RangeWithIcons {...rangeConfig.stations} value={stationsCount} leftIcon={House}
-            rightIcon={Houses} unit = {""}
+            rightIcon={Houses} unit={''}
             dataTip={'Number of best results - number of top stations'}
             onChange={setStationsCount}
             range={'range-secondary'}/>

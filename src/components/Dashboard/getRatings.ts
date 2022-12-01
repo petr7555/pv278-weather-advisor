@@ -2,11 +2,11 @@ import locations from '../../data/locations.json';
 import rangeConfig from './rangeConfig';
 
 export type Rating = {
-    id: string;
-    name: string;
-    latitude: number;
-    longitude: number;
-    value: number;
+  id: string;
+  name: string;
+  latitude: number;
+  longitude: number;
+  value: number;
 }
 
 const error = (value: number, ideal: number) => {
@@ -39,7 +39,7 @@ const getRatings = (monthIdx: number, idealTemperature: number, idealSunshine: n
   const maxPrecipitationError = Math.max(...precipitationErrors);
   const minSnowError = Math.min(...snowErrors);
   const maxSnowError = Math.max(...snowErrors);
-    
+
   const errors = Object.values(locations).map((location, idx) => {
     const temperatureError = normalize(temperatureErrors[idx], minTemperatureError, maxTemperatureError);
     const sunshineError = normalize(sunshineErrors[idx], minSunshineError, maxSunshineError);
@@ -61,10 +61,10 @@ const getRatings = (monthIdx: number, idealTemperature: number, idealSunshine: n
       longitude: location.longitude,
       value: 10 - roundTo(normalize(errors[idx], minError, maxError), 1),
     });
-  })
+  });
   const allStationsSelected = stationsCount >= rangeConfig.stations.max;
 
-  return allStationsSelected ? values : values.sort((a, b) => b.value - a.value).slice(0,maxStationsCount);
+  return allStationsSelected ? values : values.sort((a, b) => b.value - a.value).slice(0, maxStationsCount);
 };
 
 export default getRatings;
