@@ -12,7 +12,7 @@ ChartJS.register(CategoryScale, PointElement, RadialLinearScale, Tooltip, Legend
 ChartJS.register(BubbleMapController, GeoFeature, ProjectionScale, SizeScale);
 
 type Props = {
-    ratings: Rating[]
+  ratings: Rating[]
 }
 
 const CzechMap: FC<Props> = ({
@@ -84,19 +84,19 @@ const CzechMap: FC<Props> = ({
 
   return <div className="relative py-1">
     <Chart type={'bubbleMap'} data={data} options={options}/>
-    <DataSource className={"pr-8 pt-1"}/>
+    <DataSource className={'pr-8 pt-1'}/>
     {ratings.length === 0 && (
       <>
         <div
           className={'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ' +
-                        'w-full h-full'}
+            'w-full h-full'}
           style={{
             backdropFilter: 'blur(2px)',
             backgroundColor: 'rgba(255, 255, 255, 0.5)',
           }}></div>
-        <p className={'text-center text-3xl ' +
-                    'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5/6 ' +
-                    'select-none'}
+        <p
+          className={'text-center text-3xl select-none ' +
+            'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-5/6'}
         >{hintText}</p>
       </>)}
   </div>;

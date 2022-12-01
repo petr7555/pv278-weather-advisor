@@ -11,24 +11,24 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [ 16.x ]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-          
+
       - name: Install dependencies
         run: npm ci
-        
+
       - name: Build
         run: npm run build-ci
-      
+
       - name: Deploy
         uses: petr7555/surge-preview@v3
         id: preview_step
@@ -37,6 +37,6 @@ jobs:
           surge_domain: pv278-weather-advisor
           github_token: ${{ secrets.GITHUB_TOKEN }}
           dist: build
-            
+
       - name: Get preview URL
         run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
