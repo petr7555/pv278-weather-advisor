@@ -136,7 +136,8 @@ const Dashboard = () => {
             rightIcon={Snow} unit={'cm'}
             dataTip={'Average total snow cover height in centimeters in selected month.'}
             onChange={setIdealSnow}/>
-          <RangeWithIcons {...rangeConfig.stations} value={stationsCount} leftIcon={House}
+          <RangeWithIcons {...rangeConfig.stations} value={stationsCount}
+            leftIcon={House} leftIconSize={"2.2rem"}
             rightIcon={Houses} unit={''}
             dataTip={'Number of best results - number of top stations'}
             onChange={setStationsCount}

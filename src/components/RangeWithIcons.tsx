@@ -8,7 +8,9 @@ type Props = {
   value: number;
   onChange: (value: number) => void;
   leftIcon: FunctionComponent<SVGProps<SVGSVGElement> & { title?: string | undefined; }>;
+  leftIconSize?: string;
   rightIcon: FunctionComponent<SVGProps<SVGSVGElement> & { title?: string | undefined; }>;
+  rightIconSize?: string;
   unit: string;
   dataTip: string;
   unspecifiedMax?: boolean;
@@ -18,14 +20,13 @@ type Props = {
 const RangeWithIcons: FC<Props> = ({
   min, max,
   value, step,
-  leftIcon: LeftIcon, rightIcon: RightIcon,
+  leftIcon: LeftIcon, leftIconSize = '2.5rem',
+  rightIcon: RightIcon, rightIconSize = '2.5rem',
   unit, dataTip,
   onChange,
   range = 'range-primary',
   unspecifiedMax = false
 }) => {
-  const iconSize = '2.5rem';
-
   return (
     <div className={'flex flex-1 justify-center w-full'}>
       <div className={`tooltip tooltip-secondary tooltip-right z-10
@@ -33,8 +34,8 @@ const RangeWithIcons: FC<Props> = ({
       data-tip={dataTip}>
         <div className={'flex flex-col items-center w-20'}>
           <LeftIcon style={{
-            width: iconSize,
-            height: iconSize,
+            width: leftIconSize,
+            height: leftIconSize,
           }}/>
           <div className={'text-sm text-neutral'}>{unit}</div>
         </div>
@@ -42,8 +43,8 @@ const RangeWithIcons: FC<Props> = ({
       <Range className="flex-1 mt-2 mx-2" rangeStyle={range} min={min} max={max} step={step} value={value}
         onChange={onChange} unspecifiedMax={unspecifiedMax}/>
       <RightIcon style={{
-        width: iconSize,
-        height: iconSize
+        width: rightIconSize,
+        height: rightIconSize
       }}/>
     </div>
   );
