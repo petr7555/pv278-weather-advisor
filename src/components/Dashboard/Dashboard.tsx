@@ -139,7 +139,7 @@ const Dashboard = () => {
           <RangeWithIcons {...rangeConfig.stations} value={stationsCount}
             leftIcon={House} leftIconSize={"2.2rem"}
             rightIcon={Houses} unit={''}
-            dataTip={'Number of best results - number of top stations'}
+            dataTip={'Number of best results to show.'}
             onChange={setStationsCount}
             range={'range-secondary'}/>
         </div>
