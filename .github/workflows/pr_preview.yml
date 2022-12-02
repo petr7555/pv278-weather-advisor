@@ -23,12 +23,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build-ci
-
       - name: Deploy
         uses: petr7555/surge-preview@v3
         id: preview_step
@@ -36,6 +30,9 @@ jobs:
           surge_token: ${{ secrets.SURGE_TOKEN }}
           surge_domain: pv278-weather-advisor
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          build: |
+            npm ci
+            npm run build-ci
           dist: build
 
       - name: Get preview URL
