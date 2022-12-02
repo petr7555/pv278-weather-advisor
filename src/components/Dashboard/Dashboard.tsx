@@ -26,7 +26,7 @@ type UrlState = Partial<{
   idealSunshine: number,
   idealPrecipitation: number,
   idealSnow: number,
-  stationsCount: number,
+  stationsCount: number | 'all',
   ratingValue: number,
 }>;
 
@@ -101,7 +101,7 @@ const Dashboard = () => {
     setState({
       ...state,
       activity: activity,
-      stationsCount: value,
+      stationsCount: value === rangeConfig.stations.max ? 'all' : value,
     });
   };
 
@@ -136,12 +136,12 @@ const Dashboard = () => {
             rightIcon={Snow} unit={'cm'}
             dataTip={'Average total snow cover height in centimeters in selected month.'}
             onChange={setIdealSnow}/>
-          <RangeWithIcons {...rangeConfig.stations} value={stationsCount}
-            leftIcon={House} leftIconSize={"2.2rem"}
+          <RangeWithIcons {...rangeConfig.stations} value={stationsCount} maxTickSuffix={'+'}
+            leftIcon={House} leftIconSize={'2.2rem'}
             rightIcon={Houses} unit={''}
             dataTip={'Number of best results to show.'}
             onChange={setStationsCount}
-            range={'range-secondary'}/>
+            inputClassName={'range-secondary'}/>
         </div>
       </div>
     </div>

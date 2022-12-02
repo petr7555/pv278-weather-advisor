@@ -5,21 +5,21 @@ type Props = {
   min: number;
   max: number;
   step: number;
-  value: number;
+  value: number | 'all';
+  maxTickSuffix?: string;
   onChange: (value: number) => void;
   className?: string;
-  rangeStyle?: string;
-  unspecifiedMax?: boolean;
+  inputClassName?: string;
 }
 const Range: FC<Props> = ({
   min,
   max,
   step,
   value,
+  maxTickSuffix = '',
+  onChange,
   className,
-  rangeStyle = 'range-primary',
-  unspecifiedMax = false,
-  onChange
+  inputClassName = 'range-primary',
 }) => {
   const onSelectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(Number(event.target.value));
@@ -27,20 +27,13 @@ const Range: FC<Props> = ({
 
   return (
     <div className={clsx('w-full', className)}>
-      <input type="range" className={clsx('range range-sm', rangeStyle)} step={step} min={min} max={max} value={value}
-        onChange={onSelectChange}/>
+      <input type="range" className={clsx('range range-sm', inputClassName)} step={step} min={min} max={max}
+        value={value === 'all' ? max : value} onChange={onSelectChange}/>
       <div className="w-max-xs flex justify-between text-xs px-1 ">
         {
-          unspecifiedMax ?
-            Array.from({ length: (max - min) / step }, (_, i) => (i * step + min).toString())
-              .concat(max.toString() + '+')
-              .map((tick) => (
-                <span key={tick}>{tick}</span>
-              )) :
-            Array.from({ length: (max - min) / step + 1 }, (_, i) => i * step + min)
-              .map((tick) => (
-                <span key={tick}>{tick}</span>
-              ))
+          Array.from({ length: (max - min) / step + 1 }, (_, i) => i * step + min).map((tick) => (
+            <span key={tick}>{tick}{tick === max ? maxTickSuffix : ''}</span>
+          ))
         }
       </div>
     </div>
