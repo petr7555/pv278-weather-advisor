@@ -21,6 +21,8 @@ The application is a PWA, so you can install it on your phone.
   Having the preview deployment on a subdomain is needed so that Auth0 allowed URLs can be configured.
   The downside is that Surge does not provide SSL certificate for subdomains and without `https`,
   the PWA does not work. But this is acceptable for PR preview.
+- To make client-side routing work on surge, `index.html` had to be renamed to `200.html`.
+  See https://surge.sh/help/adding-a-200-page-for-client-side-routing.
 
 ## Used color palettes
 - https://cz.pinterest.com/pin/314900198926790245/
