@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CzechMap from '../CzechMap/CzechMap';
 import Select from '../Select';
 import RangeWithIcons from '../RangeWithIcons';
@@ -42,8 +42,16 @@ const Dashboard = () => {
     stationsCount: undefined,
     ratingValue: undefined,
   });
+  
+  useEffect(() => setState({
+    idealTemperature: rangeConfig.temperature.default,
+    idealSunshine: rangeConfig.sunshine.default,
+    idealPrecipitation: rangeConfig.precipitation.default,
+    idealSnow: rangeConfig.snow.default,
+    stationsCount: rangeConfig.stations.default,
+  }), [setState]);
 
-  const ratings = (state.monthIdx !== undefined) ?
+  const ratings = (state.activity !== undefined && state.monthIdx !== undefined) ?
     getRatings(state.monthIdx, state.idealTemperature, state.idealSunshine, state.idealPrecipitation, state.idealSnow, state.stationsCount) : [];
 
   const onActivityChange = (value: string) => {
@@ -56,7 +64,6 @@ const Dashboard = () => {
         idealSunshine: activity.idealSunshine,
         idealPrecipitation: activity.idealPrecipitation,
         idealSnow: activity.idealSnow,
-        stationsCount: stationsCount || 30,
       });
     }
   };
