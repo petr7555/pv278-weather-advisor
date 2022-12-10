@@ -15,8 +15,10 @@ const LandingPage = () => {
             <Logo/>
           </div>
           <h1 className="mb-5 text-6xl font-bold">Weather Advisor</h1>
-          <p className="mb-5">Plan the vacation of your dreams! We’ll give you the best locations to perform an activity
-            of your choice considering the optimal weather conditions.</p>
+          <p className="mb-5">
+            Plan the vacation of your dreams! We’ll give you the best locations to perform an activity of your choice,
+            considering the weather conditions.
+          </p>
           <LoginButton/>
         </div>
       </div>
