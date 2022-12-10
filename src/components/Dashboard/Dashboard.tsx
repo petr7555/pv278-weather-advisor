@@ -55,7 +55,7 @@ const Dashboard = () => {
         idealSunshine: activity.idealSunshine,
         idealPrecipitation: activity.idealPrecipitation,
         idealSnow: activity.idealSnow,
-        stationsCount: stationsCount,
+        stationsCount: stationsCount || 30,
       });
     }
   };
