@@ -8,7 +8,6 @@ export type Activity = {
     idealSnow: number;
 }
 
-
 const checkActivities = (activities: Activity[]) => {
   const checkStat = (idealValue: number, stat: 'temperature' | 'sunshine' | 'precipitation' | 'snow') => {
     const { min, max, step } = rangeConfig[stat];

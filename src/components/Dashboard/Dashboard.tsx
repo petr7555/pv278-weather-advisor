@@ -16,6 +16,7 @@ import getRatings from './getRatings';
 import activities from './activities';
 import useUrlState from '@ahooksjs/use-url-state';
 import rangeConfig from './rangeConfig';
+import HintModal from '../HintModal';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -112,6 +113,7 @@ const Dashboard = () => {
       </div>
       <div className={'flex flex-col w-full max-w-[500px]'}>
         <div className={'flex-1 w-full items-center flex flex-col'}>
+          <HintModal/>
           <Select initialOption={'What would you like to do?'}
             options={activities.map(activity => activity.name)}
             value={activity || 'What would you like to do?'} onChange={onActivityChange}/>
