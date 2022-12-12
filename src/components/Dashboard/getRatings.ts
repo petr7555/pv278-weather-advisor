@@ -61,7 +61,9 @@ const getRatings = (monthIdx: number, idealTemperature: number, idealSunshine: n
     });
   });
 
-  return ratings.sort((a, b) => b.value - a.value).slice(0, stationsCount === 'all' ? ratings.length : stationsCount);
+  return ratings.sort((a, b) => b.value - a.value)
+    .slice(0, stationsCount === 'all' ? ratings.length : stationsCount)
+    .sort((a, b) => a.id.localeCompare(b.id));
 };
 
 export default getRatings;
