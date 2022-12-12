@@ -138,8 +138,8 @@ const Dashboard = () => {
             dataTip={'Average hours of sunshine per day in selected month.'}
             onChange={setIdealSunshine}/>
           <RangeWithIcons {...rangeConfig.precipitation} value={idealPrecipitation} leftIcon={Cloudy}
-            rightIcon={Showers} unit={'mm / day'}
-            dataTip={'Average daily precipitation in millimeters in selected month.'}
+            rightIcon={Showers} unit={'mm'}
+            dataTip={'Average precipitation in millimeters in selected month.'}
             onChange={setIdealPrecipitation}/>
           <RangeWithIcons {...rangeConfig.snow} value={idealSnow} leftIcon={SnowFlurries}
             rightIcon={Snow} unit={'cm'}
