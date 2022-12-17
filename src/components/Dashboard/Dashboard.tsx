@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import CzechMap from '../CzechMap/CzechMap';
 import Select from '../Select';
 import RangeWithIcons from '../RangeWithIcons';
@@ -12,7 +12,8 @@ import { ReactComponent as SnowFlurries } from '../../icons/snow_flurries.svg';
 import { ReactComponent as Snow } from '../../icons/snow.svg';
 import { ReactComponent as House } from '../../icons/house.svg';
 import { ReactComponent as Houses } from '../../icons/houses.svg';
-import getRatings from './getRatings';
+import getRatings, { Rating } from './getRatings';
+import mergeRatings from './mergeRatings';
 import activities from './activities';
 import useUrlState from '@ahooksjs/use-url-state';
 import rangeConfig from './rangeConfig';
@@ -42,7 +43,7 @@ const Dashboard = () => {
     stationsCount: undefined,
     ratingValue: undefined,
   });
-  
+
   useEffect(() => setState({
     idealTemperature: rangeConfig.temperature.default,
     idealSunshine: rangeConfig.sunshine.default,
@@ -51,8 +52,20 @@ const Dashboard = () => {
     stationsCount: rangeConfig.stations.default,
   }), [setState]);
 
-  const ratings = (state.activity !== undefined && state.monthIdx !== undefined) ?
-    getRatings(state.monthIdx, state.idealTemperature, state.idealSunshine, state.idealPrecipitation, state.idealSnow, state.stationsCount) : [];
+  const [ratings, setRatings] = useState<Rating[]>([]);
+
+  useEffect(() => {
+    if (state.activity !== undefined && state.monthIdx !== undefined) {
+      setRatings(previousRatings => {
+        const newRatings = getRatings(state.monthIdx, state.idealTemperature, state.idealSunshine,
+          state.idealPrecipitation, state.idealSnow, state.stationsCount);
+        return mergeRatings(previousRatings, newRatings);
+      });
+    } else {
+      setRatings([]);
+    }
+  }, [state.activity, state.monthIdx, state.idealTemperature, state.idealSunshine,
+    state.idealPrecipitation, state.idealSnow, state.stationsCount]);
 
   const onActivityChange = (value: string) => {
     const activity = activities.find(activity => activity.name === value);
