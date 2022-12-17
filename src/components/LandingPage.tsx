@@ -7,7 +7,7 @@ const backgroundImage = 'url(data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZt
 
 const LandingPage = () => {
   return (
-    <div className="hero min-h-screen bg-top" style={{ backgroundImage }}>
+    <div className="hero min-h-screen bg-top overflow-hidden" style={{ backgroundImage }}>
       <div className="hero-content text-center text-neutral-content -mt-32">
         <div className="max-w-lg">
           <div className={'w-1/2 h-1/2 mx-auto relative'}>

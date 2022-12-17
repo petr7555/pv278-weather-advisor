@@ -19,9 +19,9 @@ const TIME_PER_LIGHTNING = 100;
 
 const generateLightning = (): Item => {
   const halfWidth = window.innerWidth / 2;
-  const xOffset = 80;
-  const x = getRandomInRange(-(halfWidth - xOffset), halfWidth - xOffset);
-  const y = getRandomInRange(0, window.innerHeight / 2);
+  const x = getRandomInRange(-halfWidth, halfWidth);
+  const y = getRandomInRange(0, window.innerHeight * 2/3);
+  
   const distance = Math.sqrt(x * x + y * y);
   const duration = distance / getRandomInRange(VELOCITY * 0.8, VELOCITY * 1.2);
   const key = uuidv4();
